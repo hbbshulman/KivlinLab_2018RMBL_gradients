@@ -1,0 +1,1645 @@
+---
+title: "5figs"
+author: "Hannah Shulman"
+date: "2024-01-30"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+#  libraries
+library(stringr)
+library(ggplot2)
+library(BiocManager)
+library(reshape2)
+library(reshape)
+library(microbiome)
+library(gridExtra)
+library(vegan)
+library(phyloseq)
+library(MASS)
+library(ggpubr)
+
+#  std error for bar plots:
+std <- function(x) sd(x)/sqrt(length(x))
+
+#  set working dir
+setwd("~/Desktop/RMBL/RMBL_gradients/P-cyc manuscript")
+```
+
+## Figure 1: Recovery of diverse bacterial P-cycling genes in alpine meadow soil 
+```{r prep_fig1, echo=FALSE, message=FALSE, error=FALSE}
+
+#  import data
+depths <- read.delim("~/Desktop/RMBL/RMBL_gradients/sandbox/07032023_pcyc/sum_depths.csv", sep=" ")
+t_depth<-sum(depths[,2])
+p_all <- read.delim("~/Desktop/RMBL/RMBL_gradients/sandbox/07032023_pcyc/p_all.csv", sep=",") #  melted data 
+all_hkg <-read.delim("~/Desktop/RMBL/RMBL_gradients/sandbox/11022023_housekeeping_analysis/all_hkg_gff.csv",sep=",")
+
+
+(sum(p_all$depth)/t_depth) * 100
+(sum(unique(p_all$rpoB_depth))/t_depth) * 100
+
+#  categories
+ecs <- unique(p_all[p_all$EC_rank=="Hydrolases" & p_all$p_fate=="Mineralized from organic matter",]$product)
+ecs <- c(ecs, "myo-inositol-1(or 4)-monophosphatase")
+lms <- unique(p_all[p_all$pathway=="Lipid metabolism",]$product)
+lms <- c(lms, "phospholipase C")
+lms<- lms[!(lms%in%ecs)]
+ps <- unique(p_all[p_all$pathway=="Phosphate Solubilization",]$product)
+rpo<-c("DNA-directed RNA polymerase subunit beta'","DNA-directed RNA polymerase subunit beta")
+mgs <- c(ecs,lms,ps,rpo)
+
+#  create new cat for subsetting
+p_all$path2 <- p_all$pathway
+p_all[p_all$product%in%ecs,]$path2 <- "EC Phosphatases"
+p_all[p_all$product%in%lms,]$path2 <- "EC Phospholipid Metabolism"
+p_all$phy2 <- p_all$Phylum
+p_all[!(p_all$Phylum%in%c("Actinobacteria", "Proteobacteria", "Acidobacteria")),]$phy2 <- "Other"
+
+p_mgs <- p_all[(p_all$product%in%mgs),] # 19,478 contigs of 90 products in the 3 major categories of metabolism
+p_remaining <- p_all[!(p_all$product%in%mgs),] # 2,949 contigs of 108 products in the remaining categories
+rpo_all <- all_hkg[all_hkg$product%in%rpo,] # 38,323 rpoB contigs
+rm(p_mgs, p_remaining)
+
+rpo_all$phy2 <- rpo_all$Phylum
+rpo_all[!(rpo_all$Phylum%in%c("Actinobacteria", "Proteobacteria", "Acidobacteria")),]$phy2 <- "Other"
+rpo_all<-rpo_all[,c(1,1:13)]
+
+
+#  construct table
+phys <- c("Actinobacteria", "Proteobacteria", "Acidobacteria", "Other")
+cats<-c("EC Phosphatases", "EC Phospholipid Metabolism", "Phosphate Solubilization", 
+        "General or Unknown Metabolism", "Signal & Transport", "Purine/Pyrimidine metabolism", "Sugar Metabolism", "Inositol phosphate metabolism",
+        "Phosphonate and phosphinate metabolism", "Thiamine metabolism", "Carbon fixation",
+        "rpoB")
+
+sum_grid<- expand.grid(phys, cats)
+sum_grid$total_reads <- NA
+sum_grid$taxa_richness <- NA
+sum_grid$mean_abun <- NA
+
+for(i in 1:length(sum_grid$Var1)){
+  this_path <- sum_grid[i,2]
+  this_taxa <- sum_grid[i,1]
+  if(this_path == "rpoB"){ this_p <- rpo_all[rpo_all$phy2 == this_taxa, ]}
+  else{this_p <- p_all[p_all$path2 == this_path & p_all$phy2 == this_taxa, ]}
+  #  total reads
+  sum_grid[i,3] <- sum(this_p$depth)
+  #  taxa richness
+  sum_grid[i,4] <- length(unique(this_p$taxa))
+  #  mean cumulative abundance per sample
+  if(dim(this_p)[1] != 0){  sum_grid[i,5] <- mean(aggregate(depth ~ sampleID, data=this_p[,c(5,10)], sum)$depth)}
+  else{sum_grid[i,5]<-0}
+}
+
+#  clean environment
+rm(this_taxa, this_path, i, this_p, depths, rpo_all, t_depth)
+
+#  data products: 
+#  all_hkg: df where each row is housekeeping gene annotation
+#  p_all:  df where each row is a secreted p-cyc contig annotation
+#  cats: vector, list of enzyme function categories
+#  ecs, lms, ps: vector of gene products in key categories
+#  mgs: one vector including ecs,lms,ps
+#  rpo: vector of rpoB gene names
+```
+
+```{r fig1, echo=FALSE, message=FALSE, error=FALSE, fig.width=13.805556, fig.height=8.291667}
+sum_grid$Var1 <- factor(sum_grid$Var1, levels=c("Actinobacteria","Proteobacteria", "Acidobacteria", "Other"))
+
+#  fix language: 
+levels(sum_grid$Var2)[levels(sum_grid$Var2) == "EC Phospholipid Metabolism"] <- "Phospholipid Turnover"
+levels(sum_grid$Var2)[levels(sum_grid$Var2) ==  "EC Phosphatases"] <- "Extracellular Phosphatase"
+
+library(RColorBrewer)
+ggplot(sum_grid) +
+  geom_raster(aes(x = Var1, y = Var2, fill = log(mean_abun) )  ) + 
+  #scale_fill_gradientn(colours = rainbow(10)) + 
+  scale_fill_gradientn(colours = colorRampPalette(c("white", "blue"))(10)) + 
+  geom_point( aes( x = Var1, y = Var2, size=taxa_richness ) ) + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
+  labs(fill = "Log of estimated\ngene copies", size = "Taxa Richness") + 
+  xlab("Phylum") + ylab("Metabolic Pathway")+
+  theme(text=element_text(size=15))
+
+#  clean env
+rm(sum_grid)
+```
+
+## Figure 2:  Phylogenetic lineages & metabolic strategies of P-cyclers shift over elevation
+3
+```{r prep_fig2, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
+
+md<-read.delim("~/Desktop/RMBL/RMBL_gradients/RMBL_gradients_2018_master_data.csv", sep=",", header = TRUE)
+md <- md[is.na(md$metaG_SID)==FALSE,]
+md <- md[md$SampleID!="C_27_wk_3",]
+row.names(md)<-md$SampleID
+
+cols<-c("total_ecp", "acido_ecp", "actino_ecp", "prot_ecp",
+        "total_lm", "acido_lm", "actino_lm", "prot_lm",
+        "total_ps", "acido_ps", "actino_ps", "prot_ps",
+        "total_rpo", "acido_rpo", "actino_rpo", "prot_rpo")
+plots<-md$SampleID
+p_sums2 <- data.frame(matrix(nrow=length(plots), ncol=length(cols)))
+
+for(i in 1:length(plots)){
+  for(j in 1:length(cols)){
+    if(j == 1){p_sums2[i,j]<-sum(p_all[p_all$sampleID == plots[i] & p_all$product%in%ecs,]$depth_adj)}
+    if(j == 2){p_sums2[i,j]<-sum(p_all[p_all$sampleID == plots[i] & p_all$product%in%ecs & p_all$Phylum=="Acidobacteria",]$depth_adj)}
+    if(j == 3){p_sums2[i,j]<-sum(p_all[p_all$sampleID == plots[i] & p_all$product%in%ecs & p_all$Phylum=="Actinobacteria",]$depth_adj)}
+    if(j == 4){p_sums2[i,j]<-sum(p_all[p_all$sampleID == plots[i] & p_all$product%in%ecs & p_all$Phylum=="Proteobacteria",]$depth_adj)}
+
+    if(j == 5){p_sums2[i,j]<-sum(p_all[p_all$sampleID == plots[i] & p_all$product%in%lms,]$depth_adj)}
+    if(j == 6){p_sums2[i,j]<-sum(p_all[p_all$sampleID == plots[i] & p_all$product%in%lms & p_all$Phylum=="Acidobacteria",]$depth_adj)}
+    if(j == 7){p_sums2[i,j]<-sum(p_all[p_all$sampleID == plots[i] & p_all$product%in%lms & p_all$Phylum=="Actinobacteria",]$depth_adj)}
+    if(j == 8){p_sums2[i,j]<-sum(p_all[p_all$sampleID == plots[i] & p_all$product%in%lms & p_all$Phylum=="Proteobacteria",]$depth_adj)}
+
+    if(j == 9){p_sums2[i,j]<-sum(p_all[p_all$sampleID == plots[i] & p_all$product%in%ps,]$depth_adj)}
+    if(j == 10){p_sums2[i,j]<-sum(p_all[p_all$sampleID == plots[i] & p_all$product%in%ps & p_all$Phylum=="Acidobacteria",]$depth_adj)}
+    if(j == 11){p_sums2[i,j]<-sum(p_all[p_all$sampleID == plots[i] & p_all$product%in%ps & p_all$Phylum=="Actinobacteria",]$depth_adj)}
+    if(j == 12){p_sums2[i,j]<-sum(p_all[p_all$sampleID == plots[i] & p_all$product%in%ps & p_all$Phylum=="Proteobacteria",]$depth_adj)}
+
+    if(j == 13){p_sums2[i,j]<-sum(all_hkg[all_hkg$sampleID == plots[i] & all_hkg$product%in%rpo,]$depth)}
+    if(j == 14){p_sums2[i,j]<-sum(all_hkg[all_hkg$sampleID == plots[i] & all_hkg$product%in%rpo & all_hkg$Phylum=="Acidobacteria",]$depth)}
+    if(j == 15){p_sums2[i,j]<-sum(all_hkg[all_hkg$sampleID == plots[i] & all_hkg$product%in%rpo & all_hkg$Phylum=="Actinobacteria",]$depth)}
+    if(j == 16){p_sums2[i,j]<-sum(all_hkg[all_hkg$sampleID == plots[i] & all_hkg$product%in%rpo & all_hkg$Phylum=="Proteobacteria",]$depth)}
+  }
+}
+
+colnames(p_sums2)<-cols
+row.names(p_sums2)<-plots
+
+#calculate other columns
+p_sums2$other_ecp <- p_sums2$total_ecp - (p_sums2$acido_ecp + p_sums2$prot_ecp + p_sums2$actino_ecp)
+p_sums2$other_ps <- p_sums2$total_ps - (p_sums2$acido_ps + p_sums2$prot_ps + p_sums2$actino_ps)
+p_sums2$other_lm <- p_sums2$total_lm - (p_sums2$acido_lm + p_sums2$prot_lm + p_sums2$actino_lm)
+p_sums2$other_rpo <- p_sums2$total_rpo - (p_sums2$acido_rpo + p_sums2$prot_rpo + p_sums2$actino_rpo)
+
+#  add metadata
+p_sums2[,21:22] <- md[,c(1,6)]
+
+```
+
+```{r fig2_byf, message=FALSE, error=FALSE, warning=FALSE, fid.width=13.52778, fig.height=10.80556}
+# melt
+p_sums2.1 <- melt(p_sums2, id.vars=c("SampleID", "Elevation_m"))
+p_sums2.1$value<-as.numeric(p_sums2.1$value)
+p_sums2.1$Elevation_m<-as.numeric(p_sums2.1$Elevation_m)
+
+#plot
+legend_title <- "Taxonomic Lineage"
+
+a<-ggplot(p_sums2.1[p_sums2.1$variable%in%c("acido_ecp", "actino_ecp", "prot_ecp", "other_ecp"),], 
+          aes(x=Elevation_m, y=value,color=variable)) + 
+  scale_color_manual(legend_title, values=c("#CD5C5C","#EB56EF", "#F4BBFC", "grey")) +
+  geom_point() + geom_smooth(method="lm",level=0.68)+ theme_bw() + 
+  theme(axis.text = element_text(size=12)) + 
+  xlab("") + ylab("") +  ggtitle("Phosphatases \n49 genes") 
+
+#  extract then remove legend 
+leg<-get_legend(a) 
+a<-a+theme(legend.position="none")
+
+b<-ggplot(p_sums2.1[p_sums2.1$variable%in%c("acido_lm", "actino_lm", "prot_lm", "other_lm"),], 
+          aes(x=Elevation_m, y=value,color=variable)) + 
+  scale_color_manual(legend_title,values=c("#CD5C5C","#EB56EF", "#F4BBFC", "grey")) +
+  geom_point() + geom_smooth(method="lm",level=0.68)+ theme_bw() + 
+  xlab("") + ylab("") +  ggtitle("Phospholipid Turnover \n32 genes") +
+  theme(axis.text = element_text(size=12)) + 
+  theme(legend.position="none")
+
+c<-ggplot(p_sums2.1[p_sums2.1$variable%in%c("acido_ps", "actino_ps", "prot_ps", "other_ps"),], 
+          aes(x=Elevation_m, y=value,color=variable)) + 
+  scale_color_manual(legend_title,values=c("#CD5C5C","#EB56EF", "#F4BBFC", "grey")) +
+  geom_point() + geom_smooth(method="lm",level=0.68)+ theme_bw() + 
+  xlab("") + ylab("") +  ggtitle("Phosphate Solubilization \n7 genes") + 
+  theme(axis.text = element_text(size=12)) + 
+  theme(legend.position="none")
+
+d<-ggplot(p_sums2.1[p_sums2.1$variable%in%c("acido_rpo", "actino_rpo", "prot_rpo", "other_rpo"),], 
+          aes(x=Elevation_m, y=value,color=variable)) + 
+  scale_color_manual(legend_title, values=c("#CD5C5C","#EB56EF", "#F4BBFC", "grey")) +
+  geom_point() + geom_smooth(method="lm",level=0.68)+ theme_bw() + 
+  xlab("") + ylab("") +  ggtitle("rpoB marker gene") + 
+  theme(axis.text = element_text(size=12)) + 
+  theme(legend.position="none")
+
+#blank plot for even graph
+blankPlot <- ggplot()+geom_blank()+theme(strip.background = element_rect(color="white", fill="white"),
+panel.background = element_rect(fill = 'white', colour = 'white'))
+
+grid.arrange(a,b,as_ggplot(leg),c,d,
+             nrow=2,ncol=3,
+             widths=c(2.2,2.2,.8))
+#  clean environment
+#rm(a,b,c,d,p_sums2.1, legend_title, plots, leg, i,j,cols,blankPlot)
+
+#  data products: 
+#  md: metadata subset to the samples with metaG data
+#  p_sums2: feature table binned by 3 major phyla x 3 major functions, with metadata appended
+```
+
+```{r fig2_byt, message=FALSE, error=FALSE, warning=FALSE, fid.width=13.52778, fig.height=10.80556}
+# melt
+p_sums2.1 <- melt(p_sums2, id.vars=c("SampleID", "Elevation_m"))
+p_sums2.1$value<-as.numeric(p_sums2.1$value)
+p_sums2.1$Elevation_m<-as.numeric(p_sums2.1$Elevation_m)
+
+#plot
+legend_title <- "Metabolic Pathway"
+
+a<-ggplot(p_sums2.1[p_sums2.1$variable%in%c("acido_ecp", "acido_lm", "acido_ps"),], 
+          aes(x=Elevation_m, y=value,color=variable)) + 
+  scale_color_manual(legend_title, values=c("#fb40fc", "#ff0060","#8f30e3")) +
+  geom_point() + geom_smooth(method="lm",level=0.68)+ theme_bw() + 
+theme(text=element_text(size=15))+
+  xlab("") + ylab("Estimated Gene Copies") +  ggtitle("Acidobacteria") 
+#  extract then remove legend 
+leg<-get_legend(a) 
+a<-a+theme(legend.position="none")
+
+b<-ggplot(p_sums2.1[p_sums2.1$variable%in%c("actino_ecp", "actino_lm", "actino_ps"),], 
+          aes(x=Elevation_m, y=value,color=variable)) + 
+  scale_color_manual(legend_title,values=c("#fb40fc","#ff0060","#8f30e3")) +
+  geom_point() + geom_smooth(method="lm",level=0.68)+ theme_bw() + 
+  xlab("") + ylab("") +  ggtitle("Actinobacteria") +
+theme(text=element_text(size=15))+
+  theme(legend.position="none")
+
+c<-ggplot(p_sums2.1[p_sums2.1$variable%in%c("prot_ecp", "prot_lm", "prot_ps"),], 
+          aes(x=Elevation_m, y=value,color=variable)) + 
+  scale_color_manual(legend_title,values=c("#fb40fc","#ff0060","#8f30e3")) +
+  geom_point() + geom_smooth(method="lm",level=0.68)+ theme_bw() + 
+  xlab("Elevation(m)") + ylab("Estimated Gene Copies") +  ggtitle("Proteobacteria") +
+theme(text=element_text(size=15))+
+  theme(legend.position="none")
+
+d<-ggplot(p_sums2.1[p_sums2.1$variable%in%c("acido_rpo", "actino_rpo", "prot_rpo", "other_rpo"),], 
+          aes(x=Elevation_m, y=value,color=variable)) + 
+  scale_color_manual(legend_title, values=c("#cd5c5c","#d3914f", "#c5b74f", "grey")) +
+  geom_point() + geom_smooth(method="lm",level=0.68)+ theme_bw() + 
+  xlab("Elevation (m)") + ylab("") +  ggtitle("rpoB marker gene") + 
+theme(text=element_text(size=15))+
+  theme(legend.position="none")
+
+#blank plot for even graph
+blankPlot <- ggplot()+geom_blank()+theme(strip.background = element_rect(color="white", fill="white"),
+panel.background = element_rect(fill = 'white', colour = 'white'))
+
+# legend
+library(grid)
+legend1 <- legendGrob(
+  labels = c("Acidobacteria", "Actinobacteria", "Proteobacteria", "Other Phyla"), 
+  pch = 16,
+  gp = gpar(col = c("#cd5c5c","#d3914f", "#c5b74f", "grey")))
+legend2 <- legendGrob(
+  labels = c("Extracellular\nPhosphatases", "Phospholipid\nTurnover Genes", "P Solubilization \nGenes" ), 
+  pch = 16,
+  gp = gpar(col = c("#fb40fc","#ff0060","#8f30e3")))
+title1_grob <- textGrob("Phylum of rpoB Gene",  just = "center", gp = gpar(fontsize = 12, fontface = "bold"))
+title2_grob <- textGrob("Function of PCB Gene", just = "center", gp = gpar(fontsize = 12, fontface = "bold"))
+
+lay <- rbind( c(1,2,NA),c(1,2,7),
+             c(1,2,8), 
+             c(1,2,NA),c(5,6,NA),
+             c(5,6,3), 
+             c(5,6,4),
+             c(5,6,NA))
+
+
+grid.arrange(grobs=list(ggplotGrob(a),ggplotGrob(b),title1_grob,legend1,ggplotGrob(c),ggplotGrob(d),title2_grob,legend2),
+             layout_matrix=lay,
+             widths=c(2.2,2.2,.9))
+
+#  clean environment
+#rm(a,b,c,d,p_sums2.1, legend_title, plots, leg, i,j,cols,blankPlot)
+
+#  data products: 
+#  md: metadata subset to the samples with metaG data
+#  p_sums2: feature table binned by 3 major phyla x 3 major functions, with metadata appended
+```
+
+### Table 1: Run mixed effects linear models p-cyc data and all env factors: 
+
+```{r table1, include=TRUE,message=FALSE, error=FALSE, warning=FALSE}
+library(MASS)
+library(car)
+library(lmerTest)
+
+p_sums2[,23:32] <- md[,c(2,3,11,15:19,21,12)]
+
+#  clean data
+psums3 <- p_sums2[p_sums2$Week!=5,] #  remove week 5 because no PO4 data was collected
+psums3[is.na(psums3$phosphate.g.g.1)==TRUE,]$phosphate.g.g.1 <- 0 # replace remaining  values with 0
+psums3[is.na(psums3$NH4.ug.g.1)==TRUE,]$NH4.ug.g.1 <- 0
+psums3[is.na(psums3$MBC.g.kg)==TRUE,]$MBC.g.kg <- 0
+psums3$logN<-log(psums3$NH4.ug.g.1) #  log scale N and P: 
+psums3$logP<-log(psums3$phosphate.g.g.1)
+psums3[psums3=="-Inf"] <- 0
+
+##  ECP 
+
+# full lmer model
+model <- lmerTest::lmer(total_ecp ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+#  co-linearity -- looks good i think? (everything < 5)
+car::vif(model) 
+#  model selection  - backwards stepwise regression
+lmerTest::step(model)
+#  model selection  - F-tests of single term deletions
+drop1(model)
+#  final model + summary
+model <- lmerTest::lmer(total_ecp ~ SOC.percent + (1|Gradient) + (1|DayofYear), data=psums3)
+anova(model, type=3)
+
+model <- lmerTest::lmer(acido_ecp ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(acido_ecp ~ pH + (1|Gradient) + (1|DayofYear), data=psums3)
+anova(model, type=3)
+
+model <- lmerTest::lmer(actino_ecp ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(actino_ecp ~ SOC.percent + Elevation_m + (1|Gradient) + (1|DayofYear), data=psums3)
+anova(model, type=3)
+
+model <- lmerTest::lmer(prot_ecp ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(prot_ecp ~ pH + AM_hyphal_length_mm.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+anova(model, type=3)
+
+## LIPID METABOLISM
+model <- lmerTest::lmer(total_lm ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(total_lm ~ SOC.percent + (1|Gradient) + (1|DayofYear), data=psums3)
+anova(model, type=3)
+
+model <- lmerTest::lmer(acido_lm ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(acido_lm ~ SOC.percent + pH + phosphate.g.g.1+ (1|Gradient) + (1|DayofYear), data=psums3)
+anova(model, type=3)
+
+model <- lmerTest::lmer(actino_lm ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(actino_lm ~ SOC.percent + Elevation_m + (1|Gradient) + (1|DayofYear), data=psums3)
+anova(model, type=3)
+
+model <- lmerTest::lmer(prot_lm ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(prot_lm ~ SOC.percent + Elevation_m + pH+ (1|Gradient) + (1|DayofYear), data=psums3)
+anova(model, type=3)
+
+
+#  P SOL
+
+model <- lmerTest::lmer(total_ps ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(total_ps ~ pH  + Elevation_m + (1|Gradient) + (1|DayofYear), data=psums3)
+anova(model, type=3)
+
+model <- lmerTest::lmer(actino_ps ~ pH + SOC.percent + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(actino_ps ~ Elevation_m + SOC.percent  + (1|Gradient) + (1|DayofYear), data=psums3)
+anova(model, type=3)
+
+model <- lmerTest::lmer(acido_ps ~ pH + Elevation_m  + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(acido_ps ~ pH + Elevation_m + (1|Gradient) + (1|DayofYear), data=psums3)
+anova(model, type=3)
+
+model <- lmerTest::lmer(prot_ps ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(prot_ps ~ pH  + phosphate.g.g.1 + AM_hyphal_length_mm.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+anova(model, type=3)
+
+
+#  rpoB 
+
+model <- lmerTest::lmer(total_rpo ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(total_rpo ~ pH + phosphate.g.g.1 + AM_hyphal_length_mm.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+anova(model, type=3)
+
+model <- lmerTest::lmer(actino_rpo ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(actino_rpo ~ pH + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+anova(model, type=3)
+
+model <- lmerTest::lmer(acido_rpo ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(acido_rpo ~ Elevation_m + SOC.percent + (1|Gradient) + (1|DayofYear), data=psums3)
+anova(model, type=3)
+
+model <- lmerTest::lmer(prot_rpo ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(prot_rpo ~ Elevation_m + (1|Gradient) + (1|DayofYear), data=psums3)
+anova(model, type=3)
+```
+
+```{r table1_withTAC, include=TRUE,message=FALSE, error=FALSE, warning=FALSE}
+library(arm)
+
+# full lmer model
+model <- lmerTest::lmer(total_ecp ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+#  co-linearity -- looks good i think? (everything < 5)
+car::vif(model) 
+#  model selection  - backwards stepwise regression
+lmerTest::step(model)
+#  model selection  - F-tests of single term deletions
+drop1(model)
+#  final model + summary
+model <- lmerTest::lmer(total_ecp ~ SOC.percent + (1|Gradient) + (1|DayofYear), data=psums3)
+anova(model, type=3)
+
+
+# Fit the linear mixed-effects model 
+model1 <- nlme::lme(total_ecp ~ SOC.percent,
+                   random = ~1 | Gradient,
+                   data = psums3)
+#  plot residuals for each subplot
+plot(model1, resid(., type = "normalized") ~ fitted(.) | Gradient, abline = 0) #  versus residuals
+plot(model1, resid(., type = "normalized") ~  DayofYear | Gradient, abline = 0, cex = 0.3) #  versus time
+summary(model1)
+
+# use coARMA structure: your form must be numeric data or it wont work
+model2 <- nlme::lme(total_ecp ~ SOC.percent,
+                   random = ~1 | Gradient/Plot,
+                   correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = psums3)
+#  plot residuals for each subplot
+plot(model2, resid(., type = "normalized") ~ fitted(.) | Gradient, abline = 0) 
+plot(model2, resid(., type = "normalized") ~  DayofYear | Gradient, abline = 0, cex = 0.3)
+summary(model2) 
+anova(model2)
+
+
+
+##  ECP 
+model <- lmerTest::lmer(acido_ecp ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(acido_ecp ~ pH + (1|Gradient) + (1|DayofYear), data=psums3)
+model2 <- nlme::lme(acido_ecp ~ pH, random = ~1 | Gradient/Plot,
+                   correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = psums3)
+anova(model2)
+
+
+model <- lmerTest::lmer(actino_ecp ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(actino_ecp ~ SOC.percent + Elevation_m + (1|Gradient) + (1|DayofYear), data=psums3)
+model2 <- nlme::lme(actino_ecp ~ SOC.percent + Elevation_m, random = ~1 | Gradient/Plot,
+                   correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = psums3)
+anova(model2)
+
+model <- lmerTest::lmer(prot_ecp ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(prot_ecp ~ pH + AM_hyphal_length_mm.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+model2 <- nlme::lme(prot_ecp ~ pH + AM_hyphal_length_mm.g.1, random = ~1 | Gradient/Plot,
+                   correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = psums3)
+anova(model2)
+
+## LIPID METABOLISM
+model <- lmerTest::lmer(total_lm ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(total_lm ~ SOC.percent + (1|Gradient) + (1|DayofYear), data=psums3)
+model2 <- nlme::lme(total_lm ~ SOC.percent, random = ~1 | Gradient/Plot,
+                   correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = psums3)
+anova(model2)
+
+model <- lmerTest::lmer(acido_lm ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(acido_lm ~ SOC.percent + pH + phosphate.g.g.1+ (1|Gradient) + (1|DayofYear), data=psums3)
+model2 <- nlme::lme(acido_lm ~ SOC.percent + pH + phosphate.g.g.1, random = ~1 | Gradient/Plot,
+                   correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = psums3)
+anova(model2)
+
+
+model <- lmerTest::lmer(actino_lm ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(actino_lm ~ SOC.percent + Elevation_m + (1|Gradient) + (1|DayofYear), data=psums3)
+model2 <- nlme::lme(actino_lm ~ SOC.percent + Elevation_m, random = ~1 | Gradient/Plot,
+                   correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = psums3)
+anova(model2)
+
+model <- lmerTest::lmer(prot_lm ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(prot_lm ~ SOC.percent + Elevation_m + pH+ (1|Gradient) + (1|DayofYear), data=psums3)
+model2 <- nlme::lme(prot_lm ~ SOC.percent + Elevation_m + pH, random = ~1 | Gradient/Plot,
+                   correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = psums3)
+anova(model2)
+
+#  P SOL
+
+model <- lmerTest::lmer(total_ps ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(total_ps ~ pH  + Elevation_m + (1|Gradient) + (1|DayofYear), data=psums3)
+model2 <- nlme::lme(total_ps ~ pH  + Elevation_m , random = ~1 | Gradient/Plot,
+                   correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = psums3)
+anova(model2)
+
+model <- lmerTest::lmer(actino_ps ~ pH + SOC.percent + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(actino_ps ~ Elevation_m + SOC.percent  + (1|Gradient) + (1|DayofYear), data=psums3)
+model2 <- nlme::lme(actino_ps ~ Elevation_m + SOC.percent, random = ~1 | Gradient/Plot,
+                   correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = psums3)
+anova(model2)
+
+model <- lmerTest::lmer(acido_ps ~ pH + Elevation_m  + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(acido_ps ~ pH + Elevation_m + (1|Gradient) + (1|DayofYear), data=psums3)
+model2 <- nlme::lme(acido_ps ~ pH + Elevation_m, random = ~1 | Gradient/Plot,
+                   correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = psums3)
+anova(model2)
+
+model <- lmerTest::lmer(prot_ps ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(prot_ps ~ pH  + phosphate.g.g.1 + AM_hyphal_length_mm.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+model2 <- nlme::lme(prot_ps ~ pH  + phosphate.g.g.1 + AM_hyphal_length_mm.g.1, random = ~1 | Gradient/Plot,
+                   correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = psums3)
+anova(model2)
+
+#  rpoB 
+
+model <- lmerTest::lmer(total_rpo ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+
+model <- lmerTest::lmer(actino_rpo ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(actino_rpo ~ pH + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+model2 <- nlme::lme(actino_rpo ~ pH + phosphate.g.g.1, random = ~1 | Gradient/Plot,
+                   correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = psums3)
+anova(model2)
+
+
+model <- lmerTest::lmer(acido_rpo ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(acido_rpo ~ Elevation_m + SOC.percent + (1|Gradient) + (1|DayofYear), data=psums3)
+anova(model, type=3)
+
+model <- lmerTest::lmer(prot_rpo ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent + MBC.g.kg + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=psums3)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(prot_rpo ~ Elevation_m + (1|Gradient) + (1|DayofYear), data=psums3)
+anova(model, type=3)
+
+#  clean environment
+rm(model, psums3)
+
+#  no new data products produced. 
+```
+
+### Figure 3 : showing PO4,  HL, and pH over elevation, plus stats and summary: 
+
+```{r fig_3abc, include=TRUE,message=FALSE, error=FALSE, warning=FALSE, fig.height=15.83, fig.width=7.3472}
+#  import all md 
+data<-read.delim("~/Desktop/RMBL/RMBL_gradients/RMBL_gradients_2018_master_data.csv",sep=",")
+#  fix pH and GDD
+data[is.na(data$pH)==TRUE,]$pH <- 6.85 #  missing pH at two Teocalli points
+data[data$Plot=="TR_31",]$GDD <-1400
+data[data$Plot=="HH_27",]$GDD <-1550
+data[data$Plot=="HH_29",]$GDD <-1450
+data[data$Plot=="A_35",]$GDD <-1180
+
+#  PO4 vs elevation 
+a<-ggplot(data=data, aes(x=Elevation_m, y=phosphate.g.g.1)) +
+  geom_smooth(method="lm",level=0.68,color="darkgrey") + 
+  annotate("text", x = Inf, y = Inf, label = "pH F=30.0193**\n Elev F=2.87e-09***", 
+           color = "grey30", size = 5, hjust = 1.2, vjust = 1.5)+
+  geom_point(size=3, alpha=0.3, color= "deeppink") + theme_bw() +
+  theme(axis.text=element_text(size=15)) + 
+  xlab("Elevation (m)") + 
+  ylab("g Phosphate per g soil")
+# HL vs elevation vs time
+b<-ggplot(data=data, aes(x=Elevation_m, y=AM_hyphal_length_mm.g.1)) +
+  geom_smooth(method="lm",level=0.68,color="darkgrey")+
+  annotate("text", x = Inf, y = Inf, label = "pH F=0.00765***\n Elev F=0.02770**", 
+           color = "grey30", size = 5, hjust = 1.2, vjust = 1.5)+
+  geom_point(size=3, alpha=0.3,color="turquoise") + theme_bw() +
+  xlab("Elevation (m)") + 
+  theme(axis.text=element_text(size=15)) + 
+  ylab("mm AM hyphae per g soil")
+c<-ggplot(data=data, aes(x=Elevation_m, y=pH, group=Gradient)) +
+  geom_smooth(method="lm",level=0.0, color="darkgrey")+
+  geom_point(size=3, alpha=0.3,color="seagreen2") + theme_bw() +
+  xlab("Elevation (m)") + 
+  theme(axis.text=element_text(size=15)) + 
+  ylab("pH")
+```
+
+```{r stat_3abc, include=TRUE,message=FALSE, error=FALSE, warning=FALSE}
+#  clean data -- data2 is data with wk 5 remove and variables scaled/cleaned as necessary
+data2 <- data[data$Week!=5,] #  remove week 5 because no PO4 data was collected
+data2 <- data2[!(data2$Gradient%in%c("HH","R")),] #  remove R and HH because no HL's measured
+data2[is.na(data2$phosphate.g.g.1)==TRUE,]$phosphate.g.g.1 <- 0 # replace remaining  values with 0
+data2[is.na(data2$NH4.ug.g.1)==TRUE,]$NH4.ug.g.1 <- 0
+
+#  models of AM-HL and PO4: 
+# full lmer model
+model <- lmerTest::lmer(phosphate.g.g.1 ~ AM_hyphal_length_mm.g.1 + DayofYear + Elevation_m + pH + SOC.percent + NH4.ug.g.1  + (1|Gradient) + (1|DayofYear), data=data2)
+#  co-linearity -- looks good i think? (everything < 5)
+car::vif(model) 
+#  model selection  - backwards stepwise regression
+lmerTest::step(model)
+#  model selection  - F-tests of single term deletions
+drop1(model)
+#  final model + summary
+model <- lmerTest::lmer(phosphate.g.g.1 ~ pH + Elevation_m + (1|Gradient) + (1|DayofYear), data=data2)
+anova(model, type=3)
+
+model <- lmerTest::lmer(AM_hyphal_length_mm.g.1 ~ Elevation_m + pH + SOC.percent + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=data2)
+car::vif(model) 
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(AM_hyphal_length_mm.g.1 ~ pH + Elevation_m + (1|Gradient) + (1|DayofYear), data=data2)
+anova(model, type=3)
+model <- lmerTest::lmer(MBC.g.kg ~ pH + Elevation_m + (1|Gradient) + (1|DayofYear), data=data2)
+anova(model, type=3)
+
+model2 <- nlme::lme(MBC.g.kg ~ pH + Elevation_m ,
+                   random = ~1 | Gradient/Plot,
+                   #correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = data2[is.na(data2$MBC.g.kg)==FALSE,])
+anova(model2)
+
+
+#  report high and low elev means:
+mean(data2[data2$Elevation_est==2700,]$AM_hyphal_length_mm.g.1)
+sd(data2[data2$Elevation_est==2700,]$AM_hyphal_length_mm.g.1)
+
+mean(data2[data2$Elevation_est==3500,]$AM_hyphal_length_mm.g.1)
+sd(data2[data2$Elevation_est==3500,]$AM_hyphal_length_mm.g.1)
+
+mean(data2[data2$Elevation_est==2700,]$phosphate.g.g.1)
+sd(data2[data2$Elevation_est==2700,]$phosphate.g.g.1)
+
+mean(data2[data2$Elevation_est==3500,]$phosphate.g.g.1)
+sd(data2[data2$Elevation_est==3500,]$phosphate.g.g.1)
+
+# clean environment
+rm(c,d,e,model,data2)
+
+#  data products: 
+#  data - uncut metadata
+```
+
+```{r mbc_supfig, include=TRUE,message=FALSE, error=FALSE, warning=FALSE}
+# ata2 is data with wk 5 remove and variables scaled/cleaned as necessary
+
+model <- lmerTest::lmer(MBC.g.kg ~ pH + Elevation_m + (1|Gradient) + (1|DayofYear), data=data2)
+anova(model, type=3)
+
+model2 <- nlme::lme(MBC.g.kg ~ pH + Elevation_m ,
+                   random = ~1 | Gradient/Plot,
+                   correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = data2[is.na(data2$MBC.g.kg)==FALSE,])
+anova(model2)
+
+#  report mean, sd, etc: 
+sd(data2[is.na(data2$MBC.g.kg)==FALSE,]$MBC.g.kg)
+mean(data2[is.na(data2$MBC.g.kg)==FALSE,]$MBC.g.kg)
+max(data2[is.na(data2$MBC.g.kg)==FALSE,]$MBC.g.kg)
+min(data2[is.na(data2$MBC.g.kg)==FALSE,]$MBC.g.kg)
+
+# graph: 
+ggplot(data=data, aes(x=Elevation_m, y=MBC.g.kg)) +
+  geom_smooth(method="lm",level=0.68,color="darkgrey") + 
+  geom_point(size=3, alpha=0.3, color= "deeppink") + theme_bw() +
+  theme(axis.text=element_text(size=15)) + 
+  xlab("Elevation (m)") + 
+  ylab("g Microbial Biomass Carbon per kg soil") +
+  annotate("text", x = Inf, y = Inf, label = "pH F=2.03, p= 0.16\n Elev F=0.48, p=0.49", 
+           color = "grey30", size = 5, hjust = 1.2, vjust = 1.5)
+# graph: 
+ggplot(data=data, aes(x=Elevation_m, y=MBC.g.kg)) +
+  geom_smooth(method="lm",level=0.68,color="darkgrey") + 
+  geom_point(size=3, alpha=0.3, color= "deeppink") + theme_bw() +
+  theme(axis.text=element_text(size=15)) + 
+  facet_wrap(facets="Week", nrow=3, scales="free_y")+
+  xlab("Elevation (m)") + 
+  ylab("g Microbial Biomass Carbon per kg soil")
+```
+
+### Figure 3 / Table 3: PCB & AM dbRDA + varpart
+
+```{r prep_3_am, include=TRUE,message=FALSE, error=FALSE, warning=FALSE}
+#  load ancom scaled AM data, pull out asv table and flip so samples are rows
+load("~/Desktop/RMBL/RMBL_gradients/AMF/curation_output/Phylo_SSU_adj.RData")
+spe.clr<-as.data.frame(otu_table(Phylo_SSU_adj)) # clr normalized with ancom
+spe.clr<-as.data.frame(t(spe.clr)) # transpose so samples are rows
+
+#subset metadata to AM samples and clean  (spe.env)
+spe.env <- data[data$SSU_SID%in%row.names(spe.clr),] # subset to md with SSU samples (119)
+row.names(spe.env)<-spe.env$SSU_SID #make sure row names match
+
+#  clean up data
+spe.env[is.na(spe.env$phosphate.g.g.1)==TRUE,]$phosphate.g.g.1 <- 0 
+spe.env[is.na(spe.env$NH4.ug.g.1)==TRUE,]$NH4.ug.g.1 <- 0 
+n<-data[data$Week ==5,]$SSU_SID
+m<-row.names(spe.env[is.na(spe.env$AM_hyphal_length_mm.g.1),])
+spe.env <- spe.env[!(row.names(spe.env)%in%c(n,m)),]
+spe.clr<-spe.clr[!(row.names(spe.clr)%in%c(n,m)),] #80 obs
+
+#  order everything the same way
+spe.env<-spe.env[order(row.names(spe.env)),]
+spe.clr<-spe.clr[order(row.names(spe.clr)),]
+
+#  make euclidean dm
+# spe.dm <- vegdist(spe.clr, method = "euclidean")
+## don't need to do this because varpart will natively use euclidean distances 
+```
+
+```{r fig_3_am_varp, include=TRUE,message=FALSE, error=FALSE, warning=FALSE}
+
+#  run dbrdas
+#  model for p functions
+dbRDA_model <- capscale(spe.clr ~ Elevation_m + GDD + SOC.percent + pH + phosphate.g.g.1 + NH4.ug.g.1 + 
+                          AM_hyphal_length_mm.g.1 + Condition(Gradient) + Condition(Week),
+                     data=spe.env,
+                     distance = "euclidean")
+
+# Overall significance of the model
+overall_significance <- anova(dbRDA_model, permutations = 999)
+print(overall_significance)
+
+# Significance of each term
+term_significance <- anova(dbRDA_model, by = "term", permutations = 999)
+print(term_significance)
+
+#  first varpart
+climate <-spe.env[,c(6,13)] # elevation, GDD
+time <-spe.env[,c(11,12)] # week, day of year
+nutr <-spe.env[,15:18] # SOC, pH, PO4, NH4,
+micr <-spe.env[,19] #  AM HL
+#  run varpart
+varp <- varpart(spe.clr, climate, time, nutr, micr)
+#  plot venn diagram
+plot (varp, digits = 4, Xnames = c('climate \n (Elevation, GWC, GDD)', 'time', 
+                                   "nutrients \n (SOC, pH, PO4, NH4)", "AM hyphae"), bg = c('darkorchid1', 'seagreen2',"deeppink","turquoise"))
+
+#  intermediate varparts
+# varp <- varpart(spe.clr, ~Elevation_m, ~GWC, ~GDD,  data=spe.env) # elev and climate
+# plot (varp, digits = 3, Xnames = c('Elevation', 'GWC', "GDD"), bg = c('darkorchid1', 'seagreen2',"deeppink"))
+# varp <- varpart(spe.clr, ~GDD, ~DayofYear, ~Week,  data=spe.env) # GDD and time
+# plot (varp, digits = 3, Xnames = c('GDD', "day of year", "week"), bg = c('darkorchid1', 'seagreen2',"deeppink"))
+# varp <- varpart(spe.clr, ~ phosphate.g.g.1, ~ pH, ~SOC.percent, ~NH4.ug.g.1, data=spe.env) # nutrients
+# plot (varp, digits = 4, Xnames = c('p', 'pH', "soc", "nh4"), bg = c('darkorchid1', 'seagreen2',"deeppink", "turquoise"))
+# varp <- varpart(spe.clr, ~ pH, ~GDD, data=spe.env) # GDD vs pH
+# plot (varp, digits = 4, Xnames = c('pH', "GDD"), bg = c('darkorchid1', 'seagreen2'))
+# varp <- varpart(spe.clr, ~GDD, ~ phosphate.g.g.1, ~SOC.percent, ~NH4.ug.g.1, data=spe.env) # GDD vs other nutrients
+# plot (varp, digits = 4, Xnames = c('gdd', "po4", "soc", "nh4"), bg = c('darkorchid1', 'seagreen2',"deeppink", "turquoise"))
+# varp <- varpart(spe.clr, ~GDD, ~AM_hyphal_length_mm.g.1, data=spe.env) # GDD vs other nutrients
+# plot (varp, digits = 4, Xnames = c('gdd', "Am hl"), bg = c('darkorchid1', 'seagreen2',"deeppink", "turquoise"))
+
+# final varpart
+GDD <-spe.env[,c(6)] # GDD
+nutr <-spe.env[,c(15,17)] # SOC, PO4
+pH <-spe.env[,16] # pH
+AM <-spe.env[,19] #  AM HL
+#  run varpart
+varp <- varpart(spe.clr, GDD, pH, nutr, AM)
+#  round digits to 2 decimals 
+#varp[["part"]][["indfract"]][["Adj.R.square"]] <- round(varp[["part"]][["indfract"]][["Adj.R.square"]], digits = 3)
+#  plot venn diagram
+plot(varp, digits = 2, Xnames = c('GDD', 'pH', "nutrients (PO4, %SOC)", "AM hyphae"), bg = c('darkorchid1', 'seagreen2',"deeppink","turquoise"))
+
+#  make euler plot
+library(eulerr)
+varp.e <- c(
+  A = 2.2, B = 5.7, C = 1.5, D = 0.5,
+  "A&B" = 1.5, "A&C" = 2.3, "A&D" =  0.3, 
+  "B&C" = 0.8, "B&D" = 0.3, 
+  "A&B&C" = 0, "A&B&D" = 1.3, "A&C&D" = 0.4, "B&C&D" = 0.2
+)
+fit3 <- euler(varp.e, shape = "circle")
+d<-plot(fit3, quantities = list(cex = 0.8), main= "AMF Composition \n Residuals = 0.839",
+     labels = list(labels=c("Elevation", "pH", "nutrients \n (PO4, %SOC)", "AM hyphae"),cex=0.8), 
+     fills = c('darkorchid1', 'seagreen2',"deeppink","turquoise")) 
+```
+
+```{r fig_3_am_cca, include=TRUE,message=FALSE, error=FALSE, warning=FALSE}
+colors <- c("Elevation" = "darkorchid1", "GDD" = "darkorchid1", 
+            "%SOC" = "deeppink", "pH"="seagreen2", "PO4"="deeppink",
+            "AM Hyphal Length"="turquoise",
+            "AM Community Composition"="turquoise")
+
+#  make dbrda and extract data
+plot.raw <- ordiplot(dbRDA_model)
+spe.env[,42:43]<-as.data.frame(plot.raw[["sites"]])
+plot.arrows <- as.data.frame(plot.raw[["biplot"]])
+plot.arrows <- plot.arrows * 5.044433
+
+am_ord<- ggplot(spe.env, aes(x=CAP1, y=CAP2)) +
+  theme_bw()+ xlim(-5,5)+
+  ggtitle("AMF composition")+
+  theme(axis.text=element_text(size=15), title=element_text(size=15))+
+  geom_hline(yintercept=0,size=.2) + geom_vline(xintercept=0,size=.2) + # axis lines
+  scale_color_manual(values = colors) +
+  theme(legend.position="none")+
+  #  lines in the same order they were put into rda model
+  #  Elevation line
+  geom_segment(aes(x = 0, y = 0, xend = plot.arrows[2,1]*1.5, yend =  plot.arrows[2,2]*1.5,
+               color="Elevation"), arrow = arrow(length = unit(0.5, "cm"))) +
+  geom_label(aes(x=plot.arrows[2,1],y=plot.arrows[2,2]*1.5, label = "Elev"), size=5, color="darkorchid1",
+             hjust = "outward", vjust =  "outward") +
+  #  %SOC line
+  geom_segment(aes(x = 0, y = 0, xend = plot.arrows[3,1], yend =  plot.arrows[3,2],
+               color="%SOC"), arrow = arrow(length = unit(0.5, "cm"))) +
+  geom_label(aes(x=plot.arrows[3,1],y=plot.arrows[3,2], label = "%SOC"), size=5, color="deeppink",
+             hjust = "outward", vjust =  "outward") + 
+  #  pH line
+  geom_segment(aes(x = 0, y = 0, xend = plot.arrows[4,1], yend =  plot.arrows[4,2],
+               color="pH"), arrow = arrow(length = unit(0.5, "cm"))) +
+  geom_label(aes(x=plot.arrows[4,1],y=plot.arrows[4,2], label = "pH"), size=5, color="seagreen2",
+              hjust = "outward", vjust =  "outward") + 
+  #  phosphate line
+  geom_segment(aes(x = 0, y = 0, xend = plot.arrows[5,1], yend =  plot.arrows[5,2],
+               color="PO4"), arrow = arrow(length = unit(0.5, "cm"))) +
+  geom_label(aes(x=plot.arrows[5,1],y=plot.arrows[5,2], label = "PO4"), size=5, color="deeppink",
+             hjust = "outward", vjust =  "outward") + 
+  # AM HL
+  geom_segment(aes(x = 0, y = 0, xend = plot.arrows[7,1], yend =  plot.arrows[7,2],
+               color="AM Hyphal Length"), linetype = "dotdash", arrow = arrow(length = unit(0.5, "cm"))) +
+  geom_label(aes(x=plot.arrows[7,1],y=plot.arrows[7,2], label = "AM HL"), size=5, color="turquoise",
+              hjust = "outward", vjust =  "outward") + 
+  geom_point(size=3, alpha=0.3) +
+  annotate("text", x = Inf, y = Inf, label = "F(7,66)=2.8304***", 
+           color = "grey30", size = 5, hjust = 1.2, vjust = 1.5)
+
+```
+
+```{r prep_3_pcb, include=TRUE,message=FALSE, error=FALSE, warning=FALSE, fig.height=10}
+
+#  import p_cyc fetabs
+p_all_fetab <- read.delim("~/Desktop/RMBL/RMBL_gradients/sandbox/07032023_pcyc/p_all_fetab.csv", sep=",")
+p.clr <- data.frame(t(p_all_fetab)) #  samples rows
+p_all_ft.t <- read.delim("~/Desktop/RMBL/RMBL_gradients/sandbox/11022023_housekeeping_analysis/hkgs_fetab_tax.csv", sep=",")
+r.clr <- data.frame(t(p_all_ft.t)) #  samples rows
+
+#subset to pcyc samples and clean data
+p.env <- data[data$SampleID%in%row.names(p.clr),]
+row.names(p.env)<-p.env$SampleID
+p.env[is.na(p.env$phosphate.g.g.1)==TRUE,]$phosphate.g.g.1 <- 0 # set NA phosphate to 0
+p.env[is.na(p.env$NH4.ug.g.1)==TRUE,]$NH4.ug.g.1 <- 0 #  no NAs or model won't work
+n<-data[data$Week ==5,]$SampleID #  remove week 5 - no phosphate
+m<-row.names(p.env[is.na(p.env$AM_hyphal_length_mm.g.1),])#  remove all plots with no AM HL data
+o<- "C_27_wk_3" #  outlier
+p.env <- p.env[!(row.names(p.env)%in%c(m,n,o)),]
+p.clr<-p.clr[!(row.names(p.clr)%in%c(m,n,o)),]
+
+#  order everything the same way
+p.env<-p.env[order(row.names(p.env)),]
+p.clr<-p.clr[order(row.names(p.clr)),]
+r.clr<-r.clr[order(row.names(r.clr)),]
+
+#  make jaqquard dms 
+p.jac<-vegdist(p.clr, method="jaccard", binary=FALSE)
+r.jac<-vegdist(r.clr, method="jaccard", binary=FALSE)
+```
+
+```{r fig_3_pcb_varp, include=TRUE,message=FALSE, error=FALSE, warning=FALSE}
+#  run dbrdas
+#  model for p functions
+dbRDA_model <- capscale(p.jac ~ Elevation_m + GDD + SOC.percent + pH + phosphate.g.g.1 + NH4.ug.g.1 + 
+                          AM_hyphal_length_mm.g.1 + Condition(Gradient) + Condition(Week),
+                     data=p.env,
+                     distance = "euclidean")
+
+# Overall significance of the model
+overall_significance <- anova(dbRDA_model, permutations = 999)
+print(overall_significance)
+
+# Significance of each term
+term_significance <- anova(dbRDA_model, by = "term", permutations = 999)
+print(term_significance)
+
+
+#  first varpart
+climate <-p.env[,c(6,14,13)] # elevation, GWC, GDD
+time <-p.env[,c(11,12)] # week, day of year
+nutr <-p.env[,15:18] # SOC, pH, PO4, NH4,
+micr <-p.env[,19] #  AM HL
+#  run varpart and plot venn diagram
+varp <- varpart(p.jac, climate, time, nutr, micr)
+plot (varp, digits = 4, Xnames = c('climate \n (Elevation, GWC, GDD)', 'time', 
+                                   "nutrients \n (SOC, pH, PO4, NH4)", "AM hyphae"), bg = c('darkorchid1', 'seagreen2',"deeppink","turquoise"))
+
+#  intermediate varparts - pcyc
+# varp <- varpart(p.jac, ~Elevation_m, ~GWC, ~GDD,  data=p.env) # elev and climate
+# plot (varp, digits = 3, Xnames = c('Elevation', 'GWC', "GDD"), bg = c('darkorchid1', 'seagreen2',"deeppink"))
+# varp <- varpart(p.jac, ~GDD, ~DayofYear, ~Week,  data=p.env) # GDD and time
+# plot (varp, digits = 3, Xnames = c('GDD', "day of year", "week"), bg = c('darkorchid1', 'seagreen2',"deeppink"))
+# varp <- varpart(p.jac, ~ phosphate.g.g.1, ~ pH, ~SOC.percent, ~NH4.ug.g.1, data=p.env) # nutrients
+# plot (varp, digits = 4, Xnames = c('p', 'pH', "soc", "nh4"), bg = c('darkorchid1', 'seagreen2',"deeppink", "turquoise"))
+# varp <- varpart(p.jac, ~ pH, ~GDD, data=p.env) # GDD vs pH
+# plot (varp, digits = 4, Xnames = c('pH', "GDD"), bg = c('darkorchid1', 'seagreen2'))
+# varp <- varpart(p.jac, ~GDD, ~ phosphate.g.g.1, ~SOC.percent, ~NH4.ug.g.1, data=p.env) # GDD vs other nutrients
+# plot (varp, digits = 4, Xnames = c('gdd', "po4", "soc", "nh4"), bg = c('darkorchid1', 'seagreen2',"deeppink", "turquoise"))
+# varp <- varpart(p.jac, ~GDD, ~AM_hyphal_length_mm.g.1, data=p.env) # GDD vs other nutrients
+# plot (varp, digits = 4, Xnames = c('gdd', "Am hl"), bg = c('darkorchid1', 'seagreen2',"deeppink", "turquoise"))
+
+# final varpart
+GDD <-p.env[,c(6)] # GDD
+nutr <-p.env[,c(15,17)] # SOC, PO4
+pH <-p.env[,16] # pH
+AM <-p.env[,19] #  AM HL
+
+varp <- varpart(p.jac, GDD, pH, nutr, AM)
+plot(varp, digits = 2, Xnames = c('Elevation', 'pH', "nutrients \n (PO4, %SOC)", "AM hyphae"), bg = c('darkorchid1', 'seagreen2',"deeppink","turquoise"))
+
+#  run rda and test significance: 
+rda.clr<-dbrda(p.jac ~ GDD + pH + phosphate.g.g.1 + SOC.percent + AM_hyphal_length_mm.g.1, data=p.env)
+anova.cca(rda.clr)
+
+#  make euler plot
+library(eulerr)
+varp.e <- c(
+  A = 1.2, B = 7.2, C = 4.0,
+  "A&B" = 1.6, "A&C" = 5.3, "B&C" = 2.5, "B&D" = 1.3, 
+  "A&B&D" = 1.8, "A&C&D" = 0.4, "B&C&D" = 1.0
+)
+
+
+fit3 <- euler(varp.e, shape = "circle")
+e<-plot(fit3, quantities = list(cex = 0.8), main= "PCB composition \n Residuals = 0.767",
+     labels = list(labels=c("Elevation", "pH", "nutrients \n (PO4, %SOC)", "AM Hyphae"),cex=0.8), 
+     fills = c('darkorchid1', 'seagreen2',"deeppink","turquoise")) 
+```
+
+```{r fig_3_pcb_cca, include=TRUE,message=FALSE, error=FALSE, warning=FALSE}
+colors <- c("Elevation" = "darkorchid1", "GDD" = "darkorchid1", 
+            "%SOC" = "deeppink", "pH"="seagreen2", "PO4"="deeppink",
+            "AM Hyphal Length"="turquoise",
+            "AM Community Composition"="turquoise")
+
+plot.raw <- ordiplot(dbRDA_model)
+p.env[,42:43]<-as.data.frame(plot.raw[["sites"]])
+plot.arrows <- as.data.frame(plot.raw[["biplot"]])
+plot.arrows <- plot.arrows * 1.5
+
+pcb_ord<-ggplot(p.env, aes(x=CAP1, y=CAP2)) +
+  theme_bw()+ylim(-1.4,1.6)+
+  ggtitle("PCB composition")+
+  theme(axis.text=element_text(size=15), title=element_text(size=15))+
+  geom_hline(yintercept=0,size=.2) + geom_vline(xintercept=0,size=.2) + # axis lines
+  scale_color_manual(values = colors) +
+  theme(legend.position="none")+
+  #  lines in the same order they were put into rda model
+  #  Elevation line
+  geom_segment(aes(x = 0, y = 0, xend = plot.arrows[2,1], yend =  plot.arrows[2,2],
+               color="Elevation"), arrow = arrow(length = unit(0.5, "cm"))) +
+  geom_label(aes(x=plot.arrows[2,1],y=plot.arrows[2,2], label = "Elev"), size=5, color="darkorchid1",
+              hjust = "outward", vjust =  "outward") +
+  #  %SOC line
+  geom_segment(aes(x = 0, y = 0, xend = plot.arrows[3,1], yend =  plot.arrows[3,2],
+               color="%SOC"), arrow = arrow(length = unit(0.5, "cm"))) +
+  geom_label(aes(x=plot.arrows[3,1],y=plot.arrows[3,2], label = "%SOC"), size=5, color="deeppink",
+              hjust = "outward", vjust =  "outward") + 
+  #  pH line
+  geom_segment(aes(x = 0, y = 0, xend = plot.arrows[4,1], yend =  plot.arrows[4,2],
+               color="pH"), arrow = arrow(length = unit(0.5, "cm"))) +
+  geom_label(aes(x=plot.arrows[4,1],y=plot.arrows[4,2], label = "pH"), size=5, color="seagreen2",
+             hjust = "outward", vjust =  "outward") + 
+  #PO4 line
+    geom_segment(aes(x = 0, y = 0, xend = plot.arrows[5,1], yend =  plot.arrows[5,2],
+               color="PO4"), linetype="dotdash", arrow = arrow(length = unit(0.5, "cm"))) +
+  geom_label(aes(x=plot.arrows[5,1],y=plot.arrows[5,2], label = "PO4"), size=5, color="deeppink",
+              hjust = "outward", vjust =  "outward") + 
+  #AMHL line
+  geom_segment(aes(x = 0, y = 0, xend = plot.arrows[7,1], yend =  plot.arrows[7,2],
+               color="AM Hyphal Length"), linetype="dotdash", arrow = arrow(length = unit(0.5, "cm"))) +
+  geom_label(aes(x=plot.arrows[7,1],y=plot.arrows[7,2], label = "AM HL"), size=5, color="turquoise",
+              hjust = "outward", vjust =  "outward") + 
+  geom_point(size=3, alpha=0.3) +
+  annotate("text", x = Inf, y = Inf, label = "F(6,43)=3.5226***", 
+           color = "grey30", size = 5, hjust = 1.2, vjust = 1.5)
+  
+
+
+#  clean environemnt
+#rm(climate, fit3,nutr, p.clr, p.env, plot.arrows, plot.raw, r.clr, rda.clr, spe.clr, spe.env, time, varp)
+#rm(colors, AM, GDD, m, micr,n,o,p.jac,pH,r.jac,varp.e)
+
+#  data products: 
+#  Phylo_SSU_adj - AM phyloseq obj, clr scaled
+#  p_all_fetab - pcyc fetab at the product level, rpoB normalized, products are rows and samples are cols
+#  rpoB_ft.t - rpoB fetab at the taxa level, taxa are rows
+```
+
+```{r fig_3_plot, include=TRUE,message=FALSE, error=FALSE, warning=FALSE}
+
+z<-grid.arrange(a,b,c,nrow=1)
+x<-grid.arrange(am_ord,pcb_ord,nrow=1)
+y<-grid.arrange(d,e,nrow=1)
+grid.arrange(z,x,y,nrow=3,heights=c(.65,1.1,1))
+
+#  clean environemnt
+#rm(climate, fit3,nutr, p.clr, p.env, plot.arrows, plot.raw, r.clr, rda.clr, spe.clr, spe.env, time, varp)
+#rm(colors, AM, GDD, m, micr,n,o,p.jac,pH,r.jac,varp.e)
+
+#  data products: 
+#  Phylo_SSU_adj - AM phyloseq obj, clr scaled
+#  p_all_fetab - pcyc fetab at the product level, rpoB normalized, products are rows and samples are cols
+#  rpoB_ft.t - rpoB fetab at the taxa level, taxa are rows
+```
+
+### Table 3: rpoB dbRDA
+
+```{r prep_allPCA, include=TRUE}
+
+#  import rpoB fetab (72)
+rpoB_ft.t <- read.delim("~/Desktop/RMBL/RMBL_gradients/sandbox/11022023_housekeeping_analysis/hkgs_fetab_tax.csv", sep=",")
+p.clr <- data.frame(t(rpoB_ft.t)) #  samples as rows
+
+#subset to pcyc samples and clean data
+p.env <- data[data$SampleID%in%row.names(r.clr),]
+row.names(p.env)<-p.env$SampleID
+p.env[is.na(p.env$phosphate.g.g.1)==TRUE,]$phosphate.g.g.1 <- 0 # set NA phosphate to 0
+p.env[is.na(p.env$NH4.ug.g.1)==TRUE,]$NH4.ug.g.1 <- 0 #  no NAs or model won't work
+n<-data[data$Week ==5,]$SampleID #  remove week 5 - no phosphate
+m<-row.names(p.env[is.na(p.env$AM_hyphal_length_mm.g.1),])#  remove all plots with no AM HL data
+o<- "C_27_wk_3" #  outlier
+p.env <- p.env[!(row.names(p.env)%in%c(m,n,o)),]
+p.clr<-p.clr[!(row.names(p.clr)%in%c(m,n,o)),]
+
+#  order everything the same way
+p.env<-p.env[order(row.names(p.env)),]
+p.clr<-p.clr[order(row.names(p.clr)),]
+
+#  make jaqquard dms 
+p.jac<-vegdist(p.clr, method="jaccard", binary=FALSE)
+
+#  run dbrdas
+#  model for p functions
+dbRDA_model <- capscale(p.jac ~ Elevation_m + GDD + SOC.percent + pH + phosphate.g.g.1 + NH4.ug.g.1 + 
+                          AM_hyphal_length_mm.g.1 + Condition(Gradient) + Condition(Week),
+                     data=p.env,
+                     distance = "euclidean")
+
+# Overall significance of the model
+overall_significance <- anova(dbRDA_model, permutations = 999)
+print(overall_significance)
+
+# Significance of each term
+term_significance <- anova(dbRDA_model, by = "term", permutations = 999)
+print(term_significance)
+```
+
+### Figure 4 & Table 3: AM Guild, PCB function, PCB taxa Richness
+
+```{r prep_fig4.1, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
+
+# #  fetabs - 3 key functions
+# pcyc_ft.f.lms <- p_all_fetab[row.names(p_all_fetab)%in%lms,]
+# pcyc_ft.f.ps <- p_all_fetab[row.names(p_all_fetab)%in%ps,]
+# pcyc_ft.f.ecp <- p_all_fetab[row.names(p_all_fetab)%in%ecs,]
+# 
+# #  fetabs - 3 key functions but fetabs are by taxa not product Need to make these! 
+# #  lms
+# p_all.lms <- p_all[p_all$product%in%lms,]
+# samples<-unique(p_all$sampleID)
+# taxa<-unique(p_all.lms$taxa)
+# pcyc_ft.t.lms<-data.frame(matrix(nrow=length(taxa),ncol=length(samples)))
+# for(i in 1:length(taxa)){
+#   for(j in 1:length(samples)){
+#     pcyc_ft.t.lms[i,j] <- sum(p_all.lms[p_all.lms$taxa == taxa[i] & p_all.lms$sampleID == samples[j],]$depth_adj)}}
+# row.names(pcyc_ft.t.lms)<-taxa
+# colnames(pcyc_ft.t.lms)<-samples
+# 
+# #  ps
+# p_all.ps <- p_all[p_all$product%in%ps,]
+# samples<-unique(p_all$sampleID)
+# taxa<-unique(p_all.ps$taxa)
+# pcyc_ft.t.ps<-data.frame(matrix(nrow=length(taxa),ncol=length(samples)))
+# for(i in 1:length(taxa)){
+#   for(j in 1:length(samples)){
+#     pcyc_ft.t.ps[i,j] <- sum(p_all.ps[p_all.ps$taxa == taxa[i] & p_all.ps$sampleID == samples[j],]$depth_adj)}}
+# row.names(pcyc_ft.t.ps)<-taxa
+# colnames(pcyc_ft.t.ps)<-samples
+# 
+# #  ecs
+# p_all.ecp <- p_all[p_all$product%in%ecs,]
+# samples<-unique(p_all$sampleID)
+# taxa<-unique(p_all.ecp$taxa)
+# pcyc_ft.t.ecp<-data.frame(matrix(nrow=length(taxa),ncol=length(samples)))
+# for(i in 1:length(taxa)){
+#   for(j in 1:length(samples)){
+#     pcyc_ft.t.ecp[i,j] <- sum(p_all.ecp[p_all.ecp$taxa == taxa[i] & p_all.ecp$sampleID == samples[j],]$depth_adj)}}
+# row.names(pcyc_ft.t.ecp)<-taxa
+# colnames(pcyc_ft.t.ecp)<-samples
+# 
+# #  clean environment
+# rm(p_all.ecp, p_all.lms, P_all.ps,i,j)
+# 
+# #  import taxa data
+# pcyc_ft.t <- read.delim("~/Desktop/RMBL/RMBL_gradients/sandbox/07032023_pcyc/p_all_fetab_tax.csv", sep=",")
+# 
+# #  fetabs - 3 key phyla
+# pcyc_ft.t.acido <- pcyc_ft.t[row.names(pcyc_ft.t)%in%p_all[p_all$Phylum=="Acidobacteria",]$taxa,]
+# pcyc_ft.t.actino <- pcyc_ft.t[row.names(pcyc_ft.t)%in%p_all[p_all$Phylum=="Actinobacteria",]$taxa,]
+# pcyc_ft.t.prot <- pcyc_ft.t[row.names(pcyc_ft.t)%in%p_all[p_all$Phylum=="Proteobacteria",]$taxa,]
+# 
+# #  fetabs - 3 key taxa but fetabs are by product 
+# p_all.2 <- p_all[p_all$Phylum=="Acidobacteria",]
+# samples<-unique(p_all$sampleID)
+# products<-unique(p_all.2$product)
+# pcyc_ft.f.acido<-data.frame(matrix(nrow=length(products),ncol=length(samples)))
+# for(i in 1:length(products)){
+#   for(j in 1:length(samples)){
+#     pcyc_ft.f.acido[i,j] <- sum(p_all.2[p_all.2$product == products[i] & p_all.2$sampleID == samples[j],]$depth_adj)}}
+# row.names(pcyc_ft.f.acido)<-products
+# colnames(pcyc_ft.f.acido)<-samples
+# 
+# p_all.2 <- p_all[p_all$Phylum=="Actinobacteria",]
+# samples<-unique(p_all$sampleID)
+# products<-unique(p_all.2$product)
+# pcyc_ft.f.actino<-data.frame(matrix(nrow=length(products),ncol=length(samples)))
+# for(i in 1:length(products)){
+#   for(j in 1:length(samples)){
+#     pcyc_ft.f.actino[i,j] <- sum(p_all.2[p_all.2$product == products[i] & p_all.2$sampleID == samples[j],]$depth_adj)}}
+# row.names(pcyc_ft.f.actino)<-products
+# colnames(pcyc_ft.f.actino)<-samples
+# 
+# p_all.2 <- p_all[p_all$Phylum=="Proteobacteria",]
+# samples<-unique(p_all$sampleID)
+# products<-unique(p_all.2$product)
+# pcyc_ft.f.prot<-data.frame(matrix(nrow=length(products),ncol=length(samples)))
+# for(i in 1:length(products)){
+#   for(j in 1:length(samples)){
+#     pcyc_ft.f.prot[i,j] <- sum(p_all.2[p_all.2$product == products[i] & p_all.2$sampleID == samples[j],]$depth_adj)}}
+# row.names(pcyc_ft.f.prot)<-products
+# colnames(pcyc_ft.f.prot)<-samples
+# 
+# #  merge into one list
+# pcyc_ft.all <- list(p_all_fetab, pcyc_ft.t,
+#                     pcyc_ft.f.acido, pcyc_ft.f.actino, pcyc_ft.f.prot,
+#                     pcyc_ft.t.acido, pcyc_ft.t.actino, pcyc_ft.t.prot,
+#                     pcyc_ft.f.ps, pcyc_ft.f.lms, pcyc_ft.f.ecp,
+#                     pcyc_ft.t.ps, pcyc_ft.t.ps, pcyc_ft.t.ecp)
+# save(pcyc_ft.all, file="data/pcyc_ft.all.Rdata")
+# rm(pcyc_ft.f.acido, pcyc_ft.f.actino, pcyc_ft.f.prot,
+#                     pcyc_ft.t.acido, pcyc_ft.t.actino, pcyc_ft.t.prot,
+#                     pcyc_ft.f.ps, pcyc_ft.f.lms, pcyc_ft.f.ecp,
+#                     pcyc_ft.t.ps, pcyc_ft.t.ps, pcyc_ft.t.ecp)
+#  remove C_27_wk_3
+# for(i in 1:14){
+# this_df<- pcyc_ft.all[[i]]
+# this_df<-this_df[,colnames(this_df)!="C_27_wk_3"]
+# pcyc_ft.all[[i]] <- this_df}
+
+load("~/Desktop/RMBL/RMBL_gradients/P-cyc manuscript/data/pcyc_ft.all.Rdata")
+
+#  calculate shannon diversity
+alpha_pcyc <- as.data.frame(diversity(t(pcyc_ft.all[[1]]), index="shannon"))
+colnames(alpha_pcyc)<-"f.all"
+alpha_pcyc$t.all <- diversity(t(pcyc_ft.all[[2]]), index="shannon")
+alpha_pcyc$t.acido <- diversity(t(pcyc_ft.all[[6]]), index="shannon")
+alpha_pcyc$t.actino <- diversity(t(pcyc_ft.all[[7]]), index="shannon")
+alpha_pcyc$t.prot<- diversity(t(pcyc_ft.all[[8]]), index="shannon")
+alpha_pcyc$f.ps <- diversity(t(pcyc_ft.all[[9]]), index="shannon")
+alpha_pcyc$f.lms <- diversity(t(pcyc_ft.all[[10]]), index="shannon")
+alpha_pcyc$f.ecp <- diversity(t(pcyc_ft.all[[11]]), index="shannon")
+alpha_pcyc$t.ps <- diversity(t(pcyc_ft.all[[12]]), index="shannon")
+alpha_pcyc$t.lms <- diversity(t(pcyc_ft.all[[13]]), index="shannon")
+alpha_pcyc$t.ecp <- diversity(t(pcyc_ft.all[[14]]), index="shannon")
+alpha_pcyc$f.acido <- diversity(t(pcyc_ft.all[[3]]), index="shannon") 
+alpha_pcyc$f.actino <- diversity(t(pcyc_ft.all[[4]]), index="shannon")
+alpha_pcyc$f.prot<- diversity(t(pcyc_ft.all[[5]]), index="shannon")
+
+#  order rpoB and add 
+rpoB_ft.t <- rpoB_ft.t[,colnames(rpoB_ft.t)!="C_27_wk_3"]
+r <- match(colnames(pcyc_ft.all[[1]]), colnames(rpoB_ft.t))
+rpoB_ft.t <- rpoB_ft.t[,r]
+alpha_pcyc$rpoB <- diversity(t(rpoB_ft.t), index="shannon")
+
+#  clean environment
+rm(i,j,r,pcyc_ft.t.lms,p_all.ps)
+```
+
+```{r prep_fig4.2, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
+#  load and calculate AM shannon diversity
+load("~/Desktop/RMBL/RMBL_gradients/AMF/curation_output/Phylo_SSU_TSS.RData")
+alpha_ssu <- estimate_richness(Phylo_SSU_TSS, measures = c("Shannon"))
+colnames(alpha_ssu) <- "amf.all"
+
+#  guilds 
+edapho <- c("Gigasporaceae", "Diversisporaceae")
+Phylo_SSU.edapho <- subset_taxa(Phylo_SSU_TSS, Family%in%edapho)
+alpha_ssu$amf.edapho<-estimate_richness(Phylo_SSU.edapho, measures = c("Shannon"))[,1]
+#alpha_ssu$edapho_ra <- sample_sums(Phylo_SSU.edapho)
+
+rhizo <- c("Glomeraceae", "Claroideoglomeraceae", "Paraglomeraceae")
+Phylo_SSU.rhizo <- subset_taxa(Phylo_SSU_TSS, Family%in%rhizo)
+alpha_ssu$amf.rhizo<-estimate_richness(Phylo_SSU.rhizo, measures = c("Shannon"))[,1]
+
+ans <- c("Archaeosporaceae", "Ambisporaceaeb", "Pacisporaceae" , "Acaulosporaceae")
+Phylo_SSU.ans <- subset_taxa(Phylo_SSU_TSS, Family%in%ans)
+alpha_ssu$amf.ans<-estimate_richness(Phylo_SSU.ans, measures = c("Shannon"))[,1]
+
+#  merge each alpha diversity table with metadata, then join them
+
+# data[,c(1:6,11:21)] -- columns we want
+for(i in 1:dim(alpha_ssu)[1]){
+  alpha_ssu[i,5:22]<-data[data$SSU_SID==row.names(alpha_ssu[i,]) & is.na(data$SSU_SID)==FALSE,c(1:6,11:21)]
+}
+rm(i)
+
+#  merge them
+alpha_all<-alpha_ssu[alpha_ssu$SampleID%in%rownames(alpha_pcyc),1:21]
+for(i in 1:dim(alpha_all)[1]){
+  alpha_all[i,22:36]<-alpha_pcyc[alpha_all[i,]$SampleID,]
+} 
+rm(i)
+
+#  corrplot
+library("corrplot")
+cor.mtest <- function(mat, ...) {
+    mat <- as.matrix(mat)
+    n <- ncol(mat)
+    p.mat<- matrix(NA, n, n)
+    diag(p.mat) <- 0
+    for (i in 1:(n - 1)) {
+        for (j in (i + 1):n) {
+            tmp <- cor.test(mat[, i], mat[, j], method="kendall",...)
+            p.mat[i, j] <- p.mat[j, i] <- tmp$p.value
+        }
+    }
+  colnames(p.mat) <- rownames(p.mat) <- colnames(mat)
+  p.mat
+} #  p value function
+p<-cor.mtest(alpha_all[,c(1:4,10,16,22:36)])
+m<-cor(alpha_all[,c(1:4,10,16,22:36)], method="kendall",)
+corrplot(m, type="upper",
+         p.mat = p, sig.level = 0.05,insig = "blank")
+```
+
+```{r stat_fig4.2, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
+
+#  clean data
+alpha_all.2 <- alpha_all[alpha_all$Week!=5,] #  remove week 5 because no PO4 data was collected
+alpha_all.2[is.na(alpha_all.2$phosphate.g.g.1)==TRUE,]$phosphate.g.g.1 <- 0 # replace remaining  values with 0
+alpha_all.2[is.na(alpha_all.2$NH4.ug.g.1)==TRUE,]$NH4.ug.g.1 <- 0
+alpha_all.2[is.na(alpha_all.2$MBC.g.kg)==TRUE,]$MBC.g.kg <- 0
+alpha_all.2[alpha_all.2=="-Inf"] <- 0
+
+# full lmer model
+model <- lmerTest::lmer(amf.edapho ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent  + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient), data=alpha_all.2)
+#  model selection  - backwards stepwise regression
+lmerTest::step(model)
+#  model selection  - F-tests of single term deletions
+drop1(model)
+model2 <- nlme::lme(amf.edapho ~ SOC.percent + Elevation_m, random = ~1 | Gradient/Plot,
+                   correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = alpha_all.2)
+anova(model2)
+
+# rhizo 
+model <- lmerTest::lmer(amf.rhizo ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent  + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=alpha_all.2)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(amf.rhizo ~  Elevation_m + AM_hyphal_length_mm.g.1 +  (1|Gradient) + (1|DayofYear), data=alpha_all.2)
+model2 <- nlme::lme(amf.rhizo ~  Elevation_m + AM_hyphal_length_mm.g.1, random = ~1 | Gradient/Plot,
+                   correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = alpha_all.2)
+anova(model2)
+
+#ans 
+model <- lmerTest::lmer(amf.ans ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent  + NH4.ug.g.1 + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=alpha_all.2)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(amf.ans ~  Elevation_m + SOC.percent +  (1|Gradient) + (1|DayofYear), data=alpha_all.2)
+model2 <- nlme::lme(amf.ans ~  Elevation_m + SOC.percent, random = ~1 | Gradient/Plot,
+                   correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = alpha_all.2)
+anova(model2)
+
+# rpoB
+model <- lmerTest::lmer(rpoB ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent  + NH4.ug.g.1 + phosphate.g.g.1 + amf.rhizo + amf.edapho + amf.ans + 
+                          (1|Gradient) + (1|DayofYear), data=alpha_all.2)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(rpoB ~  pH + phosphate.g.g.1 + (1|Gradient) + (1|DayofYear), data=alpha_all.2)
+model2 <- nlme::lme(rpoB ~  pH + phosphate.g.g.1, random = ~1 | Gradient/Plot,
+                   correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = alpha_all.2)
+anova(model2)
+
+
+#  acidobacteria
+model <- lmerTest::lmer(t.acido ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent  + NH4.ug.g.1 + phosphate.g.g.1 + amf.rhizo + amf.edapho + amf.ans + 
+                          (1|Gradient) + (1|DayofYear), data=alpha_all.2)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(t.acido ~ pH + phosphate.g.g.1 + amf.ans + (1|Gradient) + (1|DayofYear), data=alpha_all.2)
+model2 <- nlme::lme(t.acido ~ pH + phosphate.g.g.1 + amf.ans, random = ~1 | Gradient/Plot,
+                   correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = alpha_all.2)
+anova(model2)
+
+#  actinobacteria
+model <- lmerTest::lmer(t.actino ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent  + NH4.ug.g.1 + phosphate.g.g.1 + amf.rhizo + amf.edapho + amf.ans + 
+                          (1|Gradient) + (1|DayofYear), data=alpha_all.2)
+lmerTest::step(model)
+drop1(model)
+model2 <- nlme::lme(t.actino ~ SOC.percent, random = ~1 | Gradient/Plot,
+                   correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = alpha_all.2)
+anova(model2)
+
+#  proteobacteria
+model <- lmerTest::lmer(t.prot ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent  + NH4.ug.g.1 + phosphate.g.g.1 + amf.rhizo + amf.edapho + amf.ans + 
+                          (1|Gradient) + (1|DayofYear), data=alpha_all.2)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(t.prot ~ Elevation_m + (1|Gradient) + (1|DayofYear), data=alpha_all.2)
+model2 <- nlme::lme(t.prot ~ Elevation_m, random = ~1 | Gradient/Plot,
+                   correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = alpha_all.2)
+anova(model2)
+
+
+#  all pcbs
+model <- lmerTest::lmer(t.all ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent  + NH4.ug.g.1 + phosphate.g.g.1 + amf.rhizo + amf.edapho + amf.ans + 
+                          (1|Gradient) + (1|DayofYear), data=alpha_all.2)
+lmerTest::step(model)
+drop1(model)
+
+# phospholipid metabolism
+model <- lmerTest::lmer(f.lms ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent  + NH4.ug.g.1 + phosphate.g.g.1 + amf.rhizo + amf.edapho + amf.ans + 
+                          (1|Gradient) + (1|DayofYear), data=alpha_all.2)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(f.lms ~ pH + phosphate.g.g.1 + (1|Gradient) + amf.rhizo + (1|DayofYear), data=alpha_all.2)
+model2 <- nlme::lme(f.lms ~ pH + phosphate.g.g.1, random = ~1 | Gradient/Plot,
+                   correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = alpha_all.2)
+anova(model2)
+
+#  p sol
+model <- lmerTest::lmer(f.ps ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent  + NH4.ug.g.1 + phosphate.g.g.1 + amf.rhizo + amf.edapho + amf.ans + 
+                          (1|Gradient) + (1|DayofYear), data=alpha_all.2)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(f.ps ~ amf.rhizo + (1|Gradient) + amf.rhizo + (1|DayofYear), data=alpha_all.2)
+model2 <- nlme::lme(f.ps ~ amf.rhizo  + phosphate.g.g.1, random = ~1 | Gradient/Plot,
+                   correlation = corARMA(form = ~ DayofYear | Gradient/Plot,p=1,q=0),
+                   data = alpha_all.2)
+anova(model2)
+
+model <- lmerTest::lmer(f.ecp ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent  + NH4.ug.g.1 + phosphate.g.g.1 + amf.rhizo + amf.edapho + amf.ans + 
+                          (1|Gradient) + (1|DayofYear), data=alpha_all.2)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(f.ecp ~ Elevation_m + SOC.percent + amf.ans + (1|Gradient) + amf.rhizo + (1|DayofYear), data=alpha_all.2)
+anova(model,type=3)
+
+model <- lmerTest::lmer(f.all ~ pH + Elevation_m + AM_hyphal_length_mm.g.1 + SOC.percent  + NH4.ug.g.1 + phosphate.g.g.1 + amf.rhizo + amf.edapho + amf.ans + 
+                          (1|Gradient) + (1|DayofYear), data=alpha_all.2)
+lmerTest::step(model)
+drop1(model)
+model <- lmerTest::lmer(f.all ~  SOC.percent + amf.rhizo + phosphate.g.g.1 + (1|Gradient) + amf.rhizo + (1|DayofYear), data=alpha_all.2)
+anova(model,type=3)
+
+```
+
+```{r fig4, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE,fig.width=9.4444,fig.height=5.19444}
+# colors
+colors <- c("Edaphophilic AMF" = "#cafb6f", 
+                 "Rhizophilic AMF" = "#71a3ce", 
+                 "Ancestral AMF"="#9acd9b",
+                 "Actinobacteria"="#d3914f", 
+                 "Acidobacteria"="#cd5c5c", 
+                 "Proteobacteria"="#c5b74f",
+                 "Phosphate Solubilization"="#8f30e3", 
+                 "PhosphoLipid Turnover"="#ff0060", 
+                 "Phosphatases" = "#fb40fc")
+
+a<-ggplot(alpha_all, aes(x=Elevation_m)) + theme_bw() + 
+  geom_point(aes(y=amf.edapho),color = "#cafb6f", alpha=.3, size=3) + 
+  geom_smooth(method="lm",level=0.68, aes(y=amf.edapho), color = "#cafb6f") + 
+  geom_point(aes(y=amf.rhizo),color = "#71a3ce", alpha=.3, size=3) + 
+  geom_smooth(method="lm",level=0.68, aes(y=amf.rhizo), color = "#71a3ce") + 
+  geom_point(aes(y=amf.ans),color = "#9acd9b", alpha=.3, size=3) +
+  geom_smooth(method="lm",level=0.68, aes(y=amf.ans), color = "#9acd9b") +
+  theme(text=element_text(size=15))+
+  xlab(" ") + ylab("AMF Shannon Diversity")
+
+b<-ggplot(alpha_all, aes(x=Elevation_m)) + theme_bw() + 
+  geom_point(aes(y=f.ps),color = "#8f30e3", alpha=.3, size=3) + 
+  geom_smooth(method="lm",level=0.68, aes(y=f.ps), color = "#8f30e3") + 
+  geom_point(aes(y=f.lms),color = "#ff0060", alpha=.3, size=3) + 
+  geom_smooth(method="lm",level=0.68, aes(y=f.lms), color = "#ff0060") + 
+  geom_point(aes(y=f.ecp),color = "#fb40fc", alpha=.3, size=3) +
+  geom_smooth(method="lm",level=0.68, aes(y=f.ecp), color = "#fb40fc") +
+  xlab("Elevation (m)") + ylab("PCB functional gene diversity") + theme(text=element_text(size=15))
+
+c<-ggplot(alpha_all, aes(x=Elevation_m)) + theme_bw() + 
+  geom_point(aes(y=t.actino),color = "#d3914f", alpha=.3, size=3) + 
+  geom_smooth(method="lm",level=0.68, color = "#d3914f", aes(y=t.actino)) + 
+  geom_point(aes(y=t.acido),color = "#cd5c5c", alpha=.3, size=3) + 
+  geom_smooth(method="lm",level=0.68, color = "#cd5c5c", aes(y=t.acido)) + 
+  geom_point(aes(y=t.prot),color = "#c5b74f", alpha=.3, size=3) +
+  geom_smooth(method="lm",level=0.68, aes(y=t.prot), color = "#c5b74f") +
+  xlab(" ") + ylab("PCB Shannon diversity") +      theme(text=element_text(size=15))
+grid.arrange(a,c,b,nrow=2)
+
+```
+
+### Figure 4: Combined datasets varpart
+```{r prep_4d, include=TRUE}
+#  subset p_cyc_ft.all down to the 66 shared samples
+load("~/Desktop/RMBL/RMBL_gradients/P-cyc manuscript/data/pcyc_ft.all.Rdata")
+
+pcyc_ft.all.2 <- pcyc_ft.all
+for(i in 1:length(pcyc_ft.all.2)){
+  this_df <- pcyc_ft.all.2[[i]]
+  this_df <- this_df[,colnames(this_df)%in%alpha_all$SampleID]
+  pcyc_ft.all.2[[i]] <- this_df
+}
+
+#  order alpha_all by the rownames in pcyc_ft.all.2
+r <- match(colnames(pcyc_ft.all.2[[1]]), alpha_all$SampleID)
+alpha_all<-alpha_all[r,]
+
+#  subset clr adjusted SSU data to just the samples in alpha_all and reorder
+Phylo_SSU_adj.2 <- subset_samples(Phylo_SSU_adj, sample_names(Phylo_SSU_adj)%in%row.names(alpha_all))
+r<-match(row.names(alpha_all), colnames(otu_table(Phylo_SSU_adj.2)))
+otu_table(Phylo_SSU_adj.2)<-otu_table(Phylo_SSU_adj.2)[,r]
+
+#  doube check theyre all in the same order
+# sample_names(Phylo_SSU_adj.2)
+# row.names(alpha_all)
+# alpha_all$SampleID
+# colnames(pcyc_ft.all.2[[1]])
+
+#  pull out first 3 axes variation from unconstrained SSU
+#  samples need to be rows for vegdist
+rhizo.dm<-vegdist(t(data.frame(otu_table(subset_taxa(Phylo_SSU_adj.2, Family%in%rhizo)))), 
+                  method= "euclidean")
+rhizo.pcs<- wcmdscale(rhizo.dm, k=2, eig=TRUE)[["points"]]
+
+ans.dm<-vegdist(t(data.frame(otu_table(subset_taxa(Phylo_SSU_adj.2, Family%in%ans)))), 
+                  method= "euclidean")
+ans.pcs<- wcmdscale(ans.dm, k=2, eig=TRUE)[["points"]]
+
+edapho.dm<-vegdist(t(data.frame(otu_table(subset_taxa(Phylo_SSU_adj.2, Family%in%edapho)))), 
+                  method= "euclidean")
+edapho.pcs<- wcmdscale(edapho.dm, k=2, eig=TRUE)[["points"]]
+
+all.pcs <- cbind(ans.pcs,rhizo.pcs,edapho.pcs)
+
+rm(i,rhizo.dm,ans.dm,edapho.dm)
+
+```
+
+```{r fig_4_barchart, include=TRUE}
+#  order of dms in list
+#  # pcyc_ft.all <- list(p_all_fetab, pcyc_ft.t,
+#                     pcyc_ft.f.acido, pcyc_ft.f.actino, pcyc_ft.f.prot,
+#                     pcyc_ft.t.acido, pcyc_ft.t.actino, pcyc_ft.t.prot,
+#                     pcyc_ft.f.ps, pcyc_ft.f.lms, pcyc_ft.f.ecp,
+#                     pcyc_ft.t.ps, pcyc_ft.t.ps, pcyc_ft.t.ecp)
+
+climate<-alpha_all[,c(10,13)]
+ph<-alpha_all[,16]
+all_env<-alpha_all[,c(10,13,16)]
+
+#  initialize df
+var.sum<-data.frame(matrix(data=NA, nrow=8, ncol=7))
+colnames(var.sum)<-c("var","ans", "rhizo", "edapho", "climate & pH", "residuals","combined")
+var.sum$var <- c("rpoB","Acidobacteria", "Actinobacteria", "Proteobacteria", 
+                 "All PCB functions","Phospholipid Turnover", "P Solubilization", "Phosphatases")
+
+#  rpoB
+varp <- varpart(vegdist(t(pcyc_ft.all.2[[2]]), method= "euclidean"), 
+                ans.pcs, edapho.pcs, rhizo.pcs, all_env)
+plot (varp, digits = 2, Xnames = c('ans','edapho', 'rhizo','env')) + title("t.all") 
+var.sum[1,2:6]<-c(.044,.039,.036,.023,0.711)
+
+#  all pcyc
+varp <- varpart(vegdist(t(pcyc_ft.all.2[[1]]), method= "euclidean"), 
+                ans.pcs, edapho.pcs, rhizo.pcs, all_env)
+plot (varp, digits = 2, Xnames = c('ans','edapho', 'rhizo','env')) + title("f.all") 
+var.sum[5,2:6]<-c(.041,.018,.144,.029,0.585)
+
+#  f.ps 
+varp <- varpart(vegdist(t(pcyc_ft.all.2[[9]]), method= "euclidean"), 
+                ans.pcs, edapho.pcs, rhizo.pcs, all_env)
+plot (varp, digits = 2, Xnames = c('ans','edapho', 'rhizo','env')) + title("f.ps") 
+var.sum[7,2:6]<-c(.057,0,.02,.011,0.507)
+
+#  f.lms
+varp <- varpart(vegdist(t(pcyc_ft.all.2[[10]]), method= "euclidean"), 
+                ans.pcs, edapho.pcs, rhizo.pcs, all_env)
+plot (varp, digits = 2, Xnames = c('ans','edapho', 'rhizo','env')) + title("f.lms") 
+var.sum[6,2:6]<-c(.035,.014,0.26,.027,0.566)
+
+#  f.ecp
+varp <- varpart(vegdist(t(pcyc_ft.all.2[[11]]), method= "euclidean"), 
+                ans.pcs, edapho.pcs, rhizo.pcs, all_env)
+plot (varp, digits = 2, Xnames = c('ans','edapho', 'rhizo','env')) + title("f.ecp") 
+var.sum[8,2:6]<-c(0,.065,0.002,.045,0.607)
+
+#  t.acido
+varp <- varpart(vegdist(t(pcyc_ft.all.2[[6]]), method= "euclidean"), 
+                ans.pcs, edapho.pcs, rhizo.pcs, all_env)
+plot (varp, digits = 2, Xnames = c('ans','edapho', 'rhizo','env')) + title("t.acido") 
+var.sum[2,2:6]<-c(0.035,0,0,0,0.610)
+
+#  t.actino
+varp <- varpart(vegdist(t(pcyc_ft.all.2[[7]]), method= "euclidean"), 
+                ans.pcs, edapho.pcs, rhizo.pcs, all_env)
+plot (varp, digits = 2, Xnames = c('ans','edapho', 'rhizo','env')) + title("t.actino") 
+var.sum[3,2:6]<-c(0.036,.055,0.058,.027,0.730)
+
+#  t.prot
+varp <- varpart(vegdist(t(pcyc_ft.all.2[[8]]), method= "euclidean"), 
+                ans.pcs, edapho.pcs, rhizo.pcs, all_env)
+plot (varp, digits = 2, Xnames = c('ans','edapho', 'rhizo','env')) + title("t.prot") 
+var.sum[4,2:6]<-c(0.071,.045,0.037,.029,0.710)
+
+#  calculate the total combined effects
+var.sum$combined<-1-rowSums(var.sum[,2:6])
+
+#  melt and plot percetage bars
+var.sum.2<-melt(var.sum, id.vars="var")
+var.sum.2$var <- factor(var.sum.2$var , 
+                           levels=c("rpoB","Acidobacteria","Actinobacteria", "Proteobacteria", 
+                                    "All PCB functions","Phospholipid Turnover", "P Solubilization", "Phosphatases"))
+var.sum.2$variable <- factor(var.sum.2$variable , 
+                           levels=c("residuals","combined","ans", "rhizo", "edapho", "climate & pH" ))
+d<- ggplot(var.sum.2[var.sum.2$variable!="residuals",], aes(x=var, y=value, fill=variable)) + 
+ geom_bar(position="stack", stat="identity") +
+ scale_fill_manual(name="Explanatory Variable",
+                   values=c("grey","#9acd9b","#71a3ce","#cafb6f","seagreen2")) + 
+ theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) + 
+ xlab("Microbial Community") + ylab("Percent Variation Explained") + 
+  theme(text=element_text(size=15)) + theme(legend.position="none")
+```
+
+```{r fig4_plot, include=TRUE}
+
+#  make legend
+
+# legend
+legend1 <- legendGrob(
+  labels = c("Acidobacteria", "Actinobacteria", "Proteobacteria", 
+             "Extracellular Phosphatases", "Phospholipid Turnover Genes", "P Solubilization Genes", 
+             "Ancestral AMF", "Rhizophilic AMF", "Edaphophilic AMF", "Environmental Effects", "Combined Effects"), 
+  pch = 16, ncol = 2,
+  gp = gpar(col = c("#cd5c5c","#d3914f", "#c5b74f",
+                    "#fb40fc","#ff0060","#8f30e3",
+                    "#9acd9b","#71a3ce","#cafb6f","seagreen2","grey"))
+)
+
+title1_grob <- textGrob("Color Key",  just = "center", gp = gpar(fontsize = 12, fontface = "bold"))
+
+lay <- rbind(c(4,1,2), c(4,1,2), c(4,1,2),
+             c(4,3,6), c(4,3,5), c(4,3,NA))
+        
+grid.arrange(grobs=list(ggplotGrob(a),ggplotGrob(b),ggplotGrob(c),ggplotGrob(d),legend1, title1_grob),
+             layout_matrix=lay)
+```
+
+
+
+
+
+

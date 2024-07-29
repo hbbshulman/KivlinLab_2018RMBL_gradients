@@ -1,0 +1,1399 @@
+Datadase	Asscession	Known/Putative? 	Datadase	Asscession	Known/Putative? 	Datadase	Asscession	Known/Putative? 
+Enzyme Commission	3.1.3.1	Known	KEGG	K07048	Known	Pfam	PF08042	Known
+Enzyme Commission	3.1.3.2	Known	KEGG	K01077	Known	Pfam	PF03070	Known
+Enzyme Commission	3.1.3.8	Known	KEGG	K01113	Known	Pfam	PF00245	Known
+Enzyme Commission	3.1.3.26	Known	KEGG	K07093	Known	Pfam	PF05787	Known
+Enzyme Commission	3.1.4.46	Known	KEGG	K09474	Known	Pfam	PF08665	Known
+Enzyme Commission	3.1.1.17	Known	KEGG	K03788	Known	Pfam	PF12689	Known
+Enzyme Commission	4.2.1.140	Known	KEGG	K01078	Known	Pfam	PF16656	Known
+Enzyme Commission	2.7.1.12	Known	KEGG	K01083	Known	Pfam	PF14008	Known
+Enzyme Commission	1.1.1.69	Known	KEGG	K01093	Known	Pfam	PF17808	Known
+Enzyme Commission	1.1.1.215	Known	KEGG	K01126	Known	Pfam	PF06888	Known
+Enzyme Commission	1.1.99.3	Known	KEGG	K01126	Known	Pfam	PF02333	Known
+Enzyme Commission	2.4.1.231	Known	KEGG	K00117	Known	Pfam	PF14566	Known
+Enzyme Commission	1.1.5.8	Known	KEGG	K06137	Known	Pfam	PF13449	Known
+Enzyme Commission	1.2.5.2	Known	KEGG	K01841	Putative	Pfam	PF00016	Putative
+Enzyme Commission	1.3.3.11	Known	KEGG	K23999	Putative	Pfam	PF00044	Putative
+Enzyme Commission	1.1.5.2	Known	KEGG	K19669	Putative	Pfam	PF00068	Putative
+Enzyme Commission	1.1.1.7	Putative	KEGG	K21934	Putative	Pfam	PF00101	Putative
+Enzyme Commission	1.1.1.8	Putative	KEGG	K09459	Putative	Pfam	PF00102	Putative
+Enzyme Commission	1.1.1.17	Putative	KEGG	K05306	Putative	Pfam	PF00121	Putative
+Enzyme Commission	1.1.1.43	Putative	KEGG	K19670	Putative	Pfam	PF00149	Putative
+Enzyme Commission	1.1.1.44	Putative	KEGG	K00206	Putative	Pfam	PF00156	Putative
+Enzyme Commission	1.1.1.49	Putative	KEGG	K03430	Putative	Pfam	PF00162	Putative
+Enzyme Commission	1.1.1.94	Putative	KEGG	K09994	Putative	Pfam	PF00205	Putative
+Enzyme Commission	1.1.1.95	Putative	KEGG	K21195	Putative	Pfam	PF00215	Putative
+Enzyme Commission	1.1.1.101	Putative	KEGG	K21196	Putative	Pfam	PF00217	Putative
+Enzyme Commission	1.1.1.137	Putative	KEGG	K05915	Putative	Pfam	PF00218	Putative
+Enzyme Commission	1.1.1.140	Putative	KEGG	K00967	Putative	Pfam	PF00233	Putative
+Enzyme Commission	1.1.1.177	Putative	KEGG	K25574	Putative	Pfam	PF00245	Putative
+Enzyme Commission	1.1.1.193	Putative	KEGG	K00993	Putative	Pfam	PF00274	Putative
+Enzyme Commission	1.1.1.200	Putative	KEGG	K13644	Putative	Pfam	PF00275	Putative
+Enzyme Commission	1.1.1.224	Putative	KEGG	K00968	Putative	Pfam	PF00291	Putative
+Enzyme Commission	1.1.1.251	Putative	KEGG	K00994	Putative	Pfam	PF00300	Putative
+Enzyme Commission	1.1.1.261	Putative	KEGG	K12901	Putative	Pfam	PF00311	Putative
+Enzyme Commission	1.1.1.262	Putative	KEGG	K12904	Putative	Pfam	PF00316	Putative
+Enzyme Commission	1.1.1.267	Putative	KEGG	K12905	Putative	Pfam	PF00328	Putative
+Enzyme Commission	1.1.1.290	Putative	KEGG	K12906	Putative	Pfam	PF00334	Putative
+Enzyme Commission	1.1.1.301	Putative	KEGG	K12907	Putative	Pfam	PF00342	Putative
+Enzyme Commission	1.1.1.302	Putative	KEGG	K12908	Putative	Pfam	PF00343	Putative
+Enzyme Commission	1.1.1.309	Putative	KEGG	K12909	Putative	Pfam	PF00358	Putative
+Enzyme Commission	1.1.1.333	Putative	KEGG	K12910	Putative	Pfam	PF00359	Putative
+Enzyme Commission	1.1.1.343	Putative	KEGG	K20930	Putative	Pfam	PF00365	Putative
+Enzyme Commission	1.1.1.351	Putative	KEGG	K03823	Putative	Pfam	PF00367	Putative
+Enzyme Commission	1.1.1.361	Putative	KEGG	K12911	Putative	Pfam	PF00381	Putative
+Enzyme Commission	1.1.1.363	Putative	KEGG	K12912	Putative	Pfam	PF00387	Putative
+Enzyme Commission	1.1.1.388	Putative	KEGG	K12913	Putative	Pfam	PF00388	Putative
+Enzyme Commission	1.1.1.402	Putative	KEGG	K12914	Putative	Pfam	PF00393	Putative
+Enzyme Commission	1.1.1.405	Putative	KEGG	K12915	Putative	Pfam	PF00408	Putative
+Enzyme Commission	1.1.1.408	Putative	KEGG	K18049	Putative	Pfam	PF00454	Putative
+Enzyme Commission	1.1.1.409	Putative	KEGG	K23996	Putative	Pfam	PF00456	Putative
+Enzyme Commission	1.1.3.21	Putative	KEGG	K06164	Putative	Pfam	PF00459	Putative
+Enzyme Commission	1.1.5.3	Putative	KEGG	K06166	Putative	Pfam	PF00475	Putative
+Enzyme Commission	1.1.98.2	Putative	KEGG	K06165	Putative	Pfam	PF00479	Putative
+Enzyme Commission	1.1.98.3	Putative	KEGG	K05780	Putative	Pfam	PF00481	Putative
+Enzyme Commission	1.1.98.6	Putative	KEGG	K06162	Putative	Pfam	PF00485	Putative
+Enzyme Commission	1.2.1.9	Putative	KEGG	K06163	Putative	Pfam	PF00512	Putative
+Enzyme Commission	1.2.1.12	Putative	KEGG	K06167	Putative	Pfam	PF00550	Putative
+Enzyme Commission	1.2.1.13	Putative	KEGG	K20859	Putative	Pfam	PF00613	Putative
+Enzyme Commission	1.2.1.38	Putative	KEGG	K04357	Putative	Pfam	PF00614	Putative
+Enzyme Commission	1.2.1.59	Putative	KEGG	K04359	Putative	Pfam	PF00640	Putative
+Enzyme Commission	1.2.1.72	Putative	KEGG	K17386	Putative	Pfam	PF00697	Putative
+Enzyme Commission	1.2.1.90	Putative	KEGG	K05450	Putative	Pfam	PF00708	Putative
+Enzyme Commission	1.2.1.103	Putative	KEGG	K05461	Putative	Pfam	PF00719	Putative
+Enzyme Commission	1.2.1.106	Putative	KEGG	K04526	Putative	Pfam	PF00737	Putative
+Enzyme Commission	1.2.1.107	Putative	KEGG	K04361	Putative	Pfam	PF00782	Putative
+Enzyme Commission	1.2.7.6	Putative	KEGG	K04363	Putative	Pfam	PF00792	Putative
+Enzyme Commission	1.3.1.83	Putative	KEGG	K05089	Putative	Pfam	PF00821	Putative
+Enzyme Commission	1.3.1.101	Putative	KEGG	K05091	Putative	Pfam	PF00834	Putative
+Enzyme Commission	1.3.1.113	Putative	KEGG	K04527	Putative	Pfam	PF00878	Putative
+Enzyme Commission	1.3.7.11	Putative	KEGG	K04364	Putative	Pfam	PF00882	Putative
+Enzyme Commission	1.4.3.5	Putative	KEGG	K09593	Putative	Pfam	PF00922	Putative
+Enzyme Commission	1.5.3.23	Putative	KEGG	K08091	Putative	Pfam	PF00923	Putative
+Enzyme Commission	1.8.4.8	Putative	KEGG	K06279	Putative	Pfam	PF00926	Putative
+Enzyme Commission	1.11.1.12	Putative	KEGG	K17447	Putative	Pfam	PF00988	Putative
+Enzyme Commission	1.11.1.23	Putative	KEGG	K17448	Putative	Pfam	PF01048	Putative
+Enzyme Commission	1.13.11.72	Putative	KEGG	K17449	Putative	Pfam	PF01050	Putative
+Enzyme Commission	1.13.11.73	Putative	KEGG	K07293	Putative	Pfam	PF01066	Putative
+Enzyme Commission	1.13.11.78	Putative	KEGG	K03099	Putative	Pfam	PF01071	Putative
+Enzyme Commission	1.13.11.89	Putative	KEGG	K02833	Putative	Pfam	PF01087	Putative
+Enzyme Commission	1.13.11.90	Putative	KEGG	K07827	Putative	Pfam	PF01116	Putative
+Enzyme Commission	1.14.11.46	Putative	KEGG	K07828	Putative	Pfam	PF01121	Putative
+Enzyme Commission	1.14.11.49	Putative	KEGG	K07831	Putative	Pfam	PF01128	Putative
+Enzyme Commission	1.14.11.71	Putative	KEGG	K07829	Putative	Pfam	PF01137	Putative
+Enzyme Commission	1.14.11.72	Putative	KEGG	K07830	Putative	Pfam	PF01150	Putative
+Enzyme Commission	1.14.18.4	Putative	KEGG	K08732	Putative	Pfam	PF01161	Putative
+Enzyme Commission	1.17.7.1	Putative	KEGG	K07834	Putative	Pfam	PF01182	Putative
+Enzyme Commission	1.17.7.3	Putative	KEGG	K07835	Putative	Pfam	PF01210	Putative
+Enzyme Commission	1.17.7.4	Putative	KEGG	K00922	Putative	Pfam	PF01238	Putative
+Enzyme Commission	1.20.1.1	Putative	KEGG	K02649	Putative	Pfam	PF01243	Putative
+Enzyme Commission	1.20.2.1	Putative	KEGG	K04456	Putative	Pfam	PF01255	Putative
+Enzyme Commission	1.20.4.1	Putative	KEGG	K07206	Putative	Pfam	PF01288	Putative
+Enzyme Commission	1.20.4.2	Putative	KEGG	K07207	Putative	Pfam	PF01293	Putative
+Enzyme Commission	1.20.4.3	Putative	KEGG	K07208	Putative	Pfam	PF01326	Putative
+Enzyme Commission	1.20.4.4	Putative	KEGG	K07203	Putative	Pfam	PF01384	Putative
+Enzyme Commission	1.20.9.1	Putative	KEGG	K04513	Putative	Pfam	PF01451	Putative
+Enzyme Commission	1.20.99.1	Putative	KEGG	K07937	Putative	Pfam	PF01502	Putative
+Enzyme Commission	2.1.1.16	Putative	KEGG	K07941	Putative	Pfam	PF01503	Putative
+Enzyme Commission	2.1.1.17	Putative	KEGG	K01116	Putative	Pfam	PF01504	Putative
+Enzyme Commission	2.1.1.71	Putative	KEGG	K05859	Putative	Pfam	PF01507	Putative
+Enzyme Commission	2.1.1.79	Putative	KEGG	K06856	Putative	Pfam	PF01515	Putative
+Enzyme Commission	2.1.1.103	Putative	KEGG	K08089	Putative	Pfam	PF01591	Putative
+Enzyme Commission	2.1.1.127	Putative	KEGG	K08090	Putative	Pfam	PF01603	Putative
+Enzyme Commission	2.1.1.233	Putative	KEGG	K07983	Putative	Pfam	PF01634	Putative
+Enzyme Commission	2.1.1.255	Putative	KEGG	K05703	Putative	Pfam	PF01636	Putative
+Enzyme Commission	2.1.1.259	Putative	KEGG	K05855	Putative	Pfam	PF01648	Putative
+Enzyme Commission	2.1.1.294	Putative	KEGG	K02677	Putative	Pfam	PF01658	Putative
+Enzyme Commission	2.1.1.308	Putative	KEGG	K01115	Putative	Pfam	PF01663	Putative
+Enzyme Commission	2.1.1.318	Putative	KEGG	K16342	Putative	Pfam	PF01704	Putative
+Enzyme Commission	2.1.1.326	Putative	KEGG	K13509	Putative	Pfam	PF01729	Putative
+Enzyme Commission	2.1.2.2	Putative	KEGG	K13523	Putative	Pfam	PF01734	Putative
+Enzyme Commission	2.1.2.3	Putative	KEGG	K19007	Putative	Pfam	PF01735	Putative
+Enzyme Commission	2.1.4.2	Putative	KEGG	K04718	Putative	Pfam	PF01806	Putative
+Enzyme Commission	2.2.1.4	Putative	KEGG	K04366	Putative	Pfam	PF01874	Putative
+Enzyme Commission	2.2.1.7	Putative	KEGG	K04368	Putative	Pfam	PF01885	Putative
+Enzyme Commission	2.2.1.11	Putative	KEGG	K04369	Putative	Pfam	PF01933	Putative
+Enzyme Commission	2.2.1.13	Putative	KEGG	K04371	Putative	Pfam	PF01937	Putative
+Enzyme Commission	2.3.1.4	Putative	KEGG	K00889	Putative	Pfam	PF01950	Putative
+Enzyme Commission	2.3.1.8	Putative	KEGG	K00901	Putative	Pfam	PF01973	Putative
+Enzyme Commission	2.3.1.15	Putative	KEGG	K01080	Putative	Pfam	PF02006	Putative
+Enzyme Commission	2.3.1.19	Putative	KEGG	K01313	Putative	Pfam	PF02112	Putative
+Enzyme Commission	2.3.1.23	Putative	KEGG	K09821	Putative	Pfam	PF02114	Putative
+Enzyme Commission	2.3.1.40	Putative	KEGG	K05242	Putative	Pfam	PF02121	Putative
+Enzyme Commission	2.3.1.42	Putative	KEGG	K10030	Putative	Pfam	PF02126	Putative
+Enzyme Commission	2.3.1.43	Putative	KEGG	K04166	Putative	Pfam	PF02157	Putative
+Enzyme Commission	2.3.1.51	Putative	KEGG	K03914	Putative	Pfam	PF02230	Putative
+Enzyme Commission	2.3.1.52	Putative	KEGG	K04603	Putative	Pfam	PF02253	Putative
+Enzyme Commission	2.3.1.62	Putative	KEGG	K04605	Putative	Pfam	PF02277	Putative
+Enzyme Commission	2.3.1.63	Putative	KEGG	K04606	Putative	Pfam	PF02283	Putative
+Enzyme Commission	2.3.1.67	Putative	KEGG	K04607	Putative	Pfam	PF02358	Putative
+Enzyme Commission	2.3.1.83	Putative	KEGG	K04604	Putative	Pfam	PF02366	Putative
+Enzyme Commission	2.3.1.105	Putative	KEGG	K04608	Putative	Pfam	PF02378	Putative
+Enzyme Commission	2.3.1.121	Putative	KEGG	K04609	Putative	Pfam	PF02478	Putative
+Enzyme Commission	2.3.1.135	Putative	KEGG	K04610	Putative	Pfam	PF02503	Putative
+Enzyme Commission	2.3.1.147	Putative	KEGG	K04226	Putative	Pfam	PF02541	Putative
+Enzyme Commission	2.3.1.148	Putative	KEGG	K04227	Putative	Pfam	PF02581	Putative
+Enzyme Commission	2.3.1.157	Putative	KEGG	K04228	Putative	Pfam	PF02611	Putative
+Enzyme Commission	2.3.1.158	Putative	KEGG	K04289	Putative	Pfam	PF02654	Putative
+Enzyme Commission	2.3.1.183	Putative	KEGG	K04291	Putative	Pfam	PF02660	Putative
+Enzyme Commission	2.3.1.198	Putative	KEGG	K04294	Putative	Pfam	PF02666	Putative
+Enzyme Commission	2.3.1.222	Putative	KEGG	K04275	Putative	Pfam	PF02670	Putative
+Enzyme Commission	2.3.1.245	Putative	KEGG	K08390	Putative	Pfam	PF02679	Putative
+Enzyme Commission	2.3.1.265	Putative	KEGG	K04273	Putative	Pfam	PF02700	Putative
+Enzyme Commission	2.3.1.274	Putative	KEGG	K04262	Putative	Pfam	PF02714	Putative
+Enzyme Commission	2.3.1.275	Putative	KEGG	K04175	Putative	Pfam	PF02744	Putative
+Enzyme Commission	2.3.1.276	Putative	KEGG	K05050	Putative	Pfam	PF02749	Putative
+Enzyme Commission	2.3.1.277	Putative	KEGG	K05858	Putative	Pfam	PF02775	Putative
+Enzyme Commission	2.3.1.280	Putative	KEGG	K04346	Putative	Pfam	PF02776	Putative
+Enzyme Commission	2.3.2.11	Putative	KEGG	K05871	Putative	Pfam	PF02781	Putative
+Enzyme Commission	2.3.2.17	Putative	KEGG	K04639	Putative	Pfam	PF02786	Putative
+Enzyme Commission	2.3.2.18	Putative	KEGG	K21289	Putative	Pfam	PF02787	Putative
+Enzyme Commission	2.3.3.18	Putative	KEGG	K21290	Putative	Pfam	PF02788	Putative
+Enzyme Commission	2.3.3.19	Putative	KEGG	K18441	Putative	Pfam	PF02800	Putative
+Enzyme Commission	2.4.1.1	Putative	KEGG	K04632	Putative	Pfam	PF02807	Putative
+Enzyme Commission	2.4.1.7	Putative	KEGG	K08041	Putative	Pfam	PF02834	Putative
+Enzyme Commission	2.4.1.8	Putative	KEGG	K08042	Putative	Pfam	PF02843	Putative
+Enzyme Commission	2.4.1.14	Putative	KEGG	K08043	Putative	Pfam	PF02844	Putative
+Enzyme Commission	2.4.1.15	Putative	KEGG	K08044	Putative	Pfam	PF02878	Putative
+Enzyme Commission	2.4.1.20	Putative	KEGG	K08045	Putative	Pfam	PF02879	Putative
+Enzyme Commission	2.4.1.30	Putative	KEGG	K00006	Putative	Pfam	PF02880	Putative
+Enzyme Commission	2.4.1.31	Putative	KEGG	K00057	Putative	Pfam	PF02988	Putative
+Enzyme Commission	2.4.1.36	Putative	KEGG	K00105	Putative	Pfam	PF03009	Putative
+Enzyme Commission	2.4.1.49	Putative	KEGG	K00111	Putative	Pfam	PF03012	Putative
+Enzyme Commission	2.4.1.52	Putative	KEGG	K00112	Putative	Pfam	PF03030	Putative
+Enzyme Commission	2.4.1.53	Putative	KEGG	K00113	Putative	Pfam	PF03031	Putative
+Enzyme Commission	2.4.1.54	Putative	KEGG	K00629	Putative	Pfam	PF03034	Putative
+Enzyme Commission	2.4.1.64	Putative	KEGG	K13506	Putative	Pfam	PF03066	Putative
+Enzyme Commission	2.4.1.70	Putative	KEGG	K13507	Putative	Pfam	PF03095	Putative
+Enzyme Commission	2.4.1.78	Putative	KEGG	K00630	Putative	Pfam	PF03151	Putative
+Enzyme Commission	2.4.1.83	Putative	KEGG	K13508	Putative	Pfam	PF03162	Putative
+Enzyme Commission	2.4.1.96	Putative	KEGG	K00631	Putative	Pfam	PF03210	Putative
+Enzyme Commission	2.4.1.97	Putative	KEGG	K08591	Putative	Pfam	PF03320	Putative
+Enzyme Commission	2.4.1.109	Putative	KEGG	K00655	Putative	Pfam	PF03332	Putative
+Enzyme Commission	2.4.1.117	Putative	KEGG	K13509	Putative	Pfam	PF03372	Putative
+Enzyme Commission	2.4.1.137	Putative	KEGG	K13523	Putative	Pfam	PF03407	Putative
+Enzyme Commission	2.4.1.141	Putative	KEGG	K19007	Putative	Pfam	PF03446	Putative
+Enzyme Commission	2.4.1.142	Putative	KEGG	K13513	Putative	Pfam	PF03507	Putative
+Enzyme Commission	2.4.1.153	Putative	KEGG	K13517	Putative	Pfam	PF03612	Putative
+Enzyme Commission	2.4.1.187	Putative	KEGG	K13519	Putative	Pfam	PF03618	Putative
+Enzyme Commission	2.4.1.188	Putative	KEGG	K14674	Putative	Pfam	PF03706	Putative
+Enzyme Commission	2.4.1.198	Putative	KEGG	K22831	Putative	Pfam	PF03740	Putative
+Enzyme Commission	2.4.1.199	Putative	KEGG	K00649	Putative	Pfam	PF03767	Putative
+Enzyme Commission	2.4.1.211	Putative	KEGG	K06123	Putative	Pfam	PF03770	Putative
+Enzyme Commission	2.4.1.213	Putative	KEGG	K00980	Putative	Pfam	PF03802	Putative
+Enzyme Commission	2.4.1.216	Putative	KEGG	K01517	Putative	Pfam	PF03819	Putative
+Enzyme Commission	2.4.1.217	Putative	KEGG	K01080	Putative	Pfam	PF03894	Putative
+Enzyme Commission	2.4.1.227	Putative	KEGG	K15728	Putative	Pfam	PF03976	Putative
+Enzyme Commission	2.4.1.230	Putative	KEGG	K18693	Putative	Pfam	PF04029	Putative
+Enzyme Commission	2.4.1.231	Putative	KEGG	K00901	Putative	Pfam	PF04041	Putative
+Enzyme Commission	2.4.1.246	Putative	KEGG	K07029	Putative	Pfam	PF04095	Putative
+Enzyme Commission	2.4.1.247	Putative	KEGG	K16368	Putative	Pfam	PF04131	Putative
+Enzyme Commission	2.4.1.250	Putative	KEGG	K00994	Putative	Pfam	PF04166	Putative
+Enzyme Commission	2.4.1.251	Putative	KEGG	K13644	Putative	Pfam	PF04185	Putative
+Enzyme Commission	2.4.1.252	Putative	KEGG	K01114	Putative	Pfam	PF04191	Putative
+Enzyme Commission	2.4.1.264	Putative	KEGG	K16619	Putative	Pfam	PF04263	Putative
+Enzyme Commission	2.4.1.266	Putative	KEGG	K18694	Putative	Pfam	PF04265	Putative
+Enzyme Commission	2.4.1.270	Putative	KEGG	K01115	Putative	Pfam	PF04272	Putative
+Enzyme Commission	2.4.1.279	Putative	KEGG	K16860	Putative	Pfam	PF04273	Putative
+Enzyme Commission	2.4.1.280	Putative	KEGG	K17717	Putative	Pfam	PF04275	Putative
+Enzyme Commission	2.4.1.281	Putative	KEGG	K00650	Putative	Pfam	PF04309	Putative
+Enzyme Commission	2.4.1.282	Putative	KEGG	K01047	Putative	Pfam	PF04336	Putative
+Enzyme Commission	2.4.1.287	Putative	KEGG	K16342	Putative	Pfam	PF04344	Putative
+Enzyme Commission	2.4.1.288	Putative	KEGG	K16343	Putative	Pfam	PF04387	Putative
+Enzyme Commission	2.4.1.289	Putative	KEGG	K14621	Putative	Pfam	PF04447	Putative
+Enzyme Commission	2.4.1.290	Putative	KEGG	K16817	Putative	Pfam	PF04464	Putative
+Enzyme Commission	2.4.1.291	Putative	KEGG	K01058	Putative	Pfam	PF04499	Putative
+Enzyme Commission	2.4.1.303	Putative	KEGG	K13510	Putative	Pfam	PF04587	Putative
+Enzyme Commission	2.4.1.304	Putative	KEGG	K13512	Putative	Pfam	PF04608	Putative
+Enzyme Commission	2.4.1.305	Putative	KEGG	K13515	Putative	Pfam	PF04637	Putative
+Enzyme Commission	2.4.1.306	Putative	KEGG	K16818	Putative	Pfam	PF04667	Putative
+Enzyme Commission	2.4.1.308	Putative	KEGG	K22389	Putative	Pfam	PF04674	Putative
+Enzyme Commission	2.4.1.309	Putative	KEGG	K06900	Putative	Pfam	PF04767	Putative
+Enzyme Commission	2.4.1.319	Putative	KEGG	K06128	Putative	Pfam	PF04802	Putative
+Enzyme Commission	2.4.1.320	Putative	KEGG	K06129	Putative	Pfam	PF04846	Putative
+Enzyme Commission	2.4.1.321	Putative	KEGG	K06130	Putative	Pfam	PF04868	Putative
+Enzyme Commission	2.4.1.329	Putative	KEGG	K13333	Putative	Pfam	PF04916	Putative
+Enzyme Commission	2.4.1.332	Putative	KEGG	K01048	Putative	Pfam	PF04979	Putative
+Enzyme Commission	2.4.1.333	Putative	KEGG	K14676	Putative	Pfam	PF04987	Putative
+Enzyme Commission	2.4.1.334	Putative	KEGG	K18695	Putative	Pfam	PF05116	Putative
+Enzyme Commission	2.4.1.335	Putative	KEGG	K18696	Putative	Pfam	PF05189	Putative
+Enzyme Commission	2.4.1.339	Putative	KEGG	K01126	Putative	Pfam	PF05278	Putative
+Enzyme Commission	2.4.1.340	Putative	KEGG	K00623	Putative	Pfam	PF05361	Putative
+Enzyme Commission	2.4.1.342	Putative	KEGG	K01049	Putative	Pfam	PF05395	Putative
+Enzyme Commission	2.4.1.343	Putative	KEGG	K00866	Putative	Pfam	PF05506	Putative
+Enzyme Commission	2.4.1.345	Putative	KEGG	K14156	Putative	Pfam	PF05719	Putative
+Enzyme Commission	2.4.1.346	Putative	KEGG	K06124	Putative	Pfam	PF05770	Putative
+Enzyme Commission	2.4.1.347	Putative	KEGG	K00968	Putative	Pfam	PF05826	Putative
+Enzyme Commission	2.4.1.348	Putative	KEGG	K00993	Putative	Pfam	PF05845	Putative
+Enzyme Commission	2.4.1.349	Putative	KEGG	K05939	Putative	Pfam	PF05861	Putative
+Enzyme Commission	2.4.1.352	Putative	KEGG	K25193	Putative	Pfam	PF05881	Putative
+Enzyme Commission	2.4.1.355	Putative	KEGG	K00894	Putative	Pfam	PF05889	Putative
+Enzyme Commission	2.4.1.356	Putative	KEGG	K00967	Putative	Pfam	PF05913	Putative
+Enzyme Commission	2.4.1.359	Putative	KEGG	K05929	Putative	Pfam	PF06007	Putative
+Enzyme Commission	2.4.1.361	Putative	KEGG	K04019	Putative	Pfam	PF06026	Putative
+Enzyme Commission	2.4.1.370	Putative	KEGG	K03735	Putative	Pfam	PF06070	Putative
+Enzyme Commission	2.4.1.371	Putative	KEGG	K03736	Putative	Pfam	PF06087	Putative
+Enzyme Commission	2.4.1.377	Putative	KEGG	K14286	Putative	Pfam	PF06090	Putative
+Enzyme Commission	2.4.1.379	Putative	KEGG	K00551	Putative	Pfam	PF06130	Putative
+Enzyme Commission	2.4.1.380	Putative	KEGG	K16369	Putative	Pfam	PF06135	Putative
+Enzyme Commission	2.4.1.381	Putative	KEGG	K00550	Putative	Pfam	PF06146	Putative
+Enzyme Commission	2.4.1.388	Putative	KEGG	K00570	Putative	Pfam	PF06315	Putative
+Enzyme Commission	2.4.2.1	Putative	KEGG	K01521	Putative	Pfam	PF06432	Putative
+Enzyme Commission	2.4.2.2	Putative	KEGG	K00981	Putative	Pfam	PF06559	Putative
+Enzyme Commission	2.4.2.3	Putative	KEGG	K01004	Putative	Pfam	PF06560	Putative
+Enzyme Commission	2.4.2.4	Putative	KEGG	K00998	Putative	Pfam	PF06602	Putative
+Enzyme Commission	2.4.2.7	Putative	KEGG	K17103	Putative	Pfam	PF06617	Putative
+Enzyme Commission	2.4.2.8	Putative	KEGG	K13618	Putative	Pfam	PF06754	Putative
+Enzyme Commission	2.4.2.9	Putative	KEGG	K08729	Putative	Pfam	PF06865	Putative
+Enzyme Commission	2.4.2.10	Putative	KEGG	K08730	Putative	Pfam	PF06874	Putative
+Enzyme Commission	2.4.2.12	Putative	KEGG	K01613	Putative	Pfam	PF06888	Putative
+Enzyme Commission	2.4.2.14	Putative	KEGG	K00995	Putative	Pfam	PF06951	Putative
+Enzyme Commission	2.4.2.15	Putative	KEGG	K01094	Putative	Pfam	PF06956	Putative
+Enzyme Commission	2.4.2.16	Putative	KEGG	K01095	Putative	Pfam	PF07297	Putative
+Enzyme Commission	2.4.2.17	Putative	KEGG	K01096	Putative	Pfam	PF07307	Putative
+Enzyme Commission	2.4.2.18	Putative	KEGG	K18697	Putative	Pfam	PF07396	Putative
+Enzyme Commission	2.4.2.19	Putative	KEGG	K06131	Putative	Pfam	PF07418	Putative
+Enzyme Commission	2.4.2.20	Putative	KEGG	K06132	Putative	Pfam	PF07448	Putative
+Enzyme Commission	2.4.2.21	Putative	KEGG	K08744	Putative	Pfam	PF07456	Putative
+Enzyme Commission	2.4.2.22	Putative	KEGG	K13511	Putative	Pfam	PF07479	Putative
+Enzyme Commission	2.4.2.27	Putative	KEGG	K00914	Putative	Pfam	PF07491	Putative
+Enzyme Commission	2.4.2.28	Putative	KEGG	K01108	Putative	Pfam	PF07663	Putative
+Enzyme Commission	2.4.2.32	Putative	KEGG	K18081	Putative	Pfam	PF07823	Putative
+Enzyme Commission	2.4.2.33	Putative	KEGG	K18082	Putative	Pfam	PF07830	Putative
+Enzyme Commission	2.4.2.44	Putative	KEGG	K18083	Putative	Pfam	PF07831	Putative
+Enzyme Commission	2.4.2.45	Putative	KEGG	K18086	Putative	Pfam	PF07931	Putative
+Enzyme Commission	2.4.2.49	Putative	KEGG	K21302	Putative	Pfam	PF07994	Putative
+Enzyme Commission	2.4.2.52	Putative	KEGG	K00888	Putative	Pfam	PF08009	Putative
+Enzyme Commission	2.4.2.53	Putative	KEGG	K19801	Putative	Pfam	PF08013	Putative
+Enzyme Commission	2.4.2.54	Putative	KEGG	K13711	Putative	Pfam	PF08019	Putative
+Enzyme Commission	2.4.2.55	Putative	KEGG	K21797	Putative	Pfam	PF08285	Putative
+Enzyme Commission	2.4.2.57	Putative	KEGG	K21798	Putative	Pfam	PF08302	Putative
+Enzyme Commission	2.4.2.59	Putative	KEGG	K00889	Putative	Pfam	PF08372	Putative
+Enzyme Commission	2.4.2.60	Putative	KEGG	K13712	Putative	Pfam	PF08398	Putative
+Enzyme Commission	2.4.99.18	Putative	KEGG	K01099	Putative	Pfam	PF08416	Putative
+Enzyme Commission	2.4.99.19	Putative	KEGG	K20278	Putative	Pfam	PF08436	Putative
+Enzyme Commission	2.4.99.20	Putative	KEGG	K20279	Putative	Pfam	PF08469	Putative
+Enzyme Commission	2.4.99.21	Putative	KEGG	K00922	Putative	Pfam	PF08472	Putative
+Enzyme Commission	2.5.1.3	Putative	KEGG	K21289	Putative	Pfam	PF08499	Putative
+Enzyme Commission	2.5.1.10	Putative	KEGG	K01110	Putative	Pfam	PF08543	Putative
+Enzyme Commission	2.5.1.19	Putative	KEGG	K03084	Putative	Pfam	PF08552	Putative
+Enzyme Commission	2.5.1.26	Putative	KEGG	K15909	Putative	Pfam	PF08629	Putative
+Enzyme Commission	2.5.1.29	Putative	KEGG	K00923	Putative	Pfam	PF08632	Putative
+Enzyme Commission	2.5.1.30	Putative	KEGG	K01109	Putative	Pfam	PF08645	Putative
+Enzyme Commission	2.5.1.31	Putative	KEGG	K00921	Putative	Pfam	PF08673	Putative
+Enzyme Commission	2.5.1.41	Putative	KEGG	K22913	Putative	Pfam	PF08709	Putative
+Enzyme Commission	2.5.1.42	Putative	KEGG	K00920	Putative	Pfam	PF09022	Putative
+Enzyme Commission	2.5.1.54	Putative	KEGG	K05858	Putative	Pfam	PF09023	Putative
+Enzyme Commission	2.5.1.55	Putative	KEGG	K05857	Putative	Pfam	PF09056	Putative
+Enzyme Commission	2.5.1.57	Putative	KEGG	K05860	Putative	Pfam	PF09139	Putative
+Enzyme Commission	2.5.1.65	Putative	KEGG	K01116	Putative	Pfam	PF09279	Putative
+Enzyme Commission	2.5.1.67	Putative	KEGG	K05859	Putative	Pfam	PF09296	Putative
+Enzyme Commission	2.5.1.68	Putative	KEGG	K05861	Putative	Pfam	PF09297	Putative
+Enzyme Commission	2.5.1.69	Putative	KEGG	K19006	Putative	Pfam	PF09345	Putative
+Enzyme Commission	2.5.1.81	Putative	KEGG	K01114	Putative	Pfam	PF09370	Putative
+Enzyme Commission	2.5.1.82	Putative	KEGG	K16619	Putative	Pfam	PF09419	Putative
+Enzyme Commission	2.5.1.83	Putative	KEGG	K01771	Putative	Pfam	PF09423	Putative
+Enzyme Commission	2.5.1.84	Putative	KEGG	K01092	Putative	Pfam	PF09488	Putative
+Enzyme Commission	2.5.1.85	Putative	KEGG	K10047	Putative	Pfam	PF09506	Putative
+Enzyme Commission	2.5.1.86	Putative	KEGG	K18649	Putative	Pfam	PF09508	Putative
+Enzyme Commission	2.5.1.87	Putative	KEGG	K00999	Putative	Pfam	PF09662	Putative
+Enzyme Commission	2.5.1.88	Putative	KEGG	K01858	Putative	Pfam	PF09924	Putative
+Enzyme Commission	2.5.1.89	Putative	KEGG	K01107	Putative	Pfam	PF09929	Putative
+Enzyme Commission	2.5.1.90	Putative	KEGG	K15422	Putative	Pfam	PF09949	Putative
+Enzyme Commission	2.5.1.91	Putative	KEGG	K19517	Putative	Pfam	PF09992	Putative
+Enzyme Commission	2.5.1.92	Putative	KEGG	K01106	Putative	Pfam	PF10032	Putative
+Enzyme Commission	2.5.1.102	Putative	KEGG	K24222	Putative	Pfam	PF10090	Putative
+Enzyme Commission	2.5.1.103	Putative	KEGG	K24221	Putative	Pfam	PF10110	Putative
+Enzyme Commission	2.5.1.105	Putative	KEGG	K03103	Putative	Pfam	PF10112	Putative
+Enzyme Commission	2.5.1.132	Putative	KEGG	K00911	Putative	Pfam	PF10120	Putative
+Enzyme Commission	2.5.1.135	Putative	KEGG	K00913	Putative	Pfam	PF10128	Putative
+Enzyme Commission	2.5.1.142	Putative	KEGG	K01765	Putative	Pfam	PF10143	Putative
+Enzyme Commission	2.5.1.145	Putative	KEGG	K00915	Putative	Pfam	PF10175	Putative
+Enzyme Commission	2.6.1.9	Putative	KEGG	K10572	Putative	Pfam	PF10195	Putative
+Enzyme Commission	2.6.1.16	Putative	KEGG	K19786	Putative	Pfam	PF10238	Putative
+Enzyme Commission	2.6.1.37	Putative	KEGG	K01083	Putative	Pfam	PF10252	Putative
+Enzyme Commission	2.6.1.52	Putative	KEGG	K01093	Putative	Pfam	PF10258	Putative
+Enzyme Commission	2.6.1.54	Putative	KEGG	K23992	Putative	Pfam	PF10261	Putative
+Enzyme Commission	2.6.1.104	Putative	KEGG	K07281	Putative	Pfam	PF10407	Putative
+Enzyme Commission	2.6.1.108	Putative	KEGG	K07291	Putative	Pfam	PF10423	Putative
+Enzyme Commission	2.6.1.114	Putative	KEGG	K00469	Putative	Pfam	PF10432	Putative
+Enzyme Commission	2.6.99.2	Putative	KEGG	K00010	Putative	Pfam	PF10472	Putative
+Enzyme Commission	2.7.1.1	Putative	KEGG	K06606	Putative	Pfam	PF10486	Putative
+Enzyme Commission	2.7.1.2	Putative	KEGG	K16043	Putative	Pfam	PF10488	Putative
+Enzyme Commission	2.7.1.3	Putative	KEGG	K16044	Putative	Pfam	PF10510	Putative
+Enzyme Commission	2.7.1.4	Putative	KEGG	K22230	Putative	Pfam	PF10555	Putative
+Enzyme Commission	2.7.1.5	Putative	KEGG	K22231	Putative	Pfam	PF10590	Putative
+Enzyme Commission	2.7.1.6	Putative	KEGG	K22232	Putative	Pfam	PF10620	Putative
+Enzyme Commission	2.7.1.7	Putative	KEGG	K22233	Putative	Pfam	PF10786	Putative
+Enzyme Commission	2.7.1.8	Putative	KEGG	K03335	Putative	Pfam	PF11124	Putative
+Enzyme Commission	2.7.1.10	Putative	KEGG	K03336	Putative	Pfam	PF11202	Putative
+Enzyme Commission	2.7.1.11	Putative	KEGG	K03337	Putative	Pfam	PF11209	Putative
+Enzyme Commission	2.7.1.12	Putative	KEGG	K03338	Putative	Pfam	PF11493	Putative
+Enzyme Commission	2.7.1.13	Putative	KEGG	K03339	Putative	Pfam	PF11522	Putative
+Enzyme Commission	2.7.1.14	Putative	KEGG	K00140	Putative	Pfam	PF11548	Putative
+Enzyme Commission	2.7.1.15	Putative	KEGG	K01803	Putative	Pfam	PF11641	Putative
+Enzyme Commission	2.7.1.16	Putative	KEGG	K00888	Putative	Pfam	PF11808	Putative
+Enzyme Commission	2.7.1.17	Putative	KEGG	K19801	Putative	Pfam	PF11896	Putative
+Enzyme Commission	2.7.1.18	Putative	KEGG	K13711	Putative	Pfam	PF12111	Putative
+Enzyme Commission	2.7.1.19	Putative	KEGG	K21797	Putative	Pfam	PF12139	Putative
+Enzyme Commission	2.7.1.20	Putative	KEGG	K21798	Putative	Pfam	PF12237	Putative
+Enzyme Commission	2.7.1.21	Putative	KEGG	K00889	Putative	Pfam	PF12252	Putative
+Enzyme Commission	2.7.1.22	Putative	KEGG	K01099	Putative	Pfam	PF12338	Putative
+Enzyme Commission	2.7.1.23	Putative	KEGG	K20278	Putative	Pfam	PF12357	Putative
+Enzyme Commission	2.7.1.24	Putative	KEGG	K20279	Putative	Pfam	PF12408	Putative
+Enzyme Commission	2.7.1.25	Putative	KEGG	K00922	Putative	Pfam	PF12453	Putative
+Enzyme Commission	2.7.1.26	Putative	KEGG	K02649	Putative	Pfam	PF12456	Putative
+Enzyme Commission	2.7.1.27	Putative	KEGG	K01110	Putative	Pfam	PF12501	Putative
+Enzyme Commission	2.7.1.28	Putative	KEGG	K03084	Putative	Pfam	PF12535	Putative
+Enzyme Commission	2.7.1.29	Putative	KEGG	K15909	Putative	Pfam	PF12536	Putative
+Enzyme Commission	2.7.1.30	Putative	KEGG	K01109	Putative	Pfam	PF12555	Putative
+Enzyme Commission	2.7.1.31	Putative	KEGG	K00921	Putative	Pfam	PF12621	Putative
+Enzyme Commission	2.7.1.32	Putative	KEGG	K01108	Putative	Pfam	PF12689	Putative
+Enzyme Commission	2.7.1.33	Putative	KEGG	K18081	Putative	Pfam	PF12766	Putative
+Enzyme Commission	2.7.1.34	Putative	KEGG	K18082	Putative	Pfam	PF12850	Putative
+Enzyme Commission	2.7.1.35	Putative	KEGG	K18083	Putative	Pfam	PF12900	Putative
+Enzyme Commission	2.7.1.36	Putative	KEGG	K18086	Putative	Pfam	PF12974	Putative
+Enzyme Commission	2.7.1.39	Putative	KEGG	K00920	Putative	Pfam	PF13089	Putative
+Enzyme Commission	2.7.1.40	Putative	KEGG	K13084	Putative	Pfam	PF13090	Putative
+Enzyme Commission	2.7.1.41	Putative	KEGG	K00914	Putative	Pfam	PF13231	Putative
+Enzyme Commission	2.7.1.42	Putative	KEGG	K00923	Putative	Pfam	PF13286	Putative
+Enzyme Commission	2.7.1.43	Putative	KEGG	K05858	Putative	Pfam	PF13292	Putative
+Enzyme Commission	2.7.1.44	Putative	KEGG	K05857	Putative	Pfam	PF13303	Putative
+Enzyme Commission	2.7.1.45	Putative	KEGG	K05860	Putative	Pfam	PF13350	Putative
+Enzyme Commission	2.7.1.46	Putative	KEGG	K01116	Putative	Pfam	PF13396	Putative
+Enzyme Commission	2.7.1.47	Putative	KEGG	K05859	Putative	Pfam	PF13597	Putative
+Enzyme Commission	2.7.1.48	Putative	KEGG	K05861	Putative	Pfam	PF13653	Putative
+Enzyme Commission	2.7.1.49	Putative	KEGG	K00915	Putative	Pfam	PF13672	Putative
+Enzyme Commission	2.7.1.50	Putative	KEGG	K00911	Putative	Pfam	PF13690	Putative
+Enzyme Commission	2.7.1.51	Putative	KEGG	K01106	Putative	Pfam	PF13714	Putative
+Enzyme Commission	2.7.1.52	Putative	KEGG	K00913	Putative	Pfam	PF13793	Putative
+Enzyme Commission	2.7.1.53	Putative	KEGG	K10572	Putative	Pfam	PF13883	Putative
+Enzyme Commission	2.7.1.54	Putative	KEGG	K19786	Putative	Pfam	PF13914	Putative
+Enzyme Commission	2.7.1.55	Putative	KEGG	K07756	Putative	Pfam	PF13916	Putative
+Enzyme Commission	2.7.1.56	Putative	KEGG	K13024	Putative	Pfam	PF14008	Putative
+Enzyme Commission	2.7.1.58	Putative	KEGG	K01107	Putative	Pfam	PF14010	Putative
+Enzyme Commission	2.7.1.59	Putative	KEGG	K15422	Putative	Pfam	PF14313	Putative
+Enzyme Commission	2.7.1.60	Putative	KEGG	K01092	Putative	Pfam	PF14320	Putative
+Enzyme Commission	2.7.1.61	Putative	KEGG	K10047	Putative	Pfam	PF14566	Putative
+Enzyme Commission	2.7.1.62	Putative	KEGG	K18649	Putative	Pfam	PF14572	Putative
+Enzyme Commission	2.7.1.63	Putative	KEGG	K15759	Putative	Pfam	PF14582	Putative
+Enzyme Commission	2.7.1.64	Putative	KEGG	K00901	Putative	Pfam	PF14665	Putative
+Enzyme Commission	2.7.1.65	Putative	KEGG	K00981	Putative	Pfam	PF14671	Putative
+Enzyme Commission	2.7.1.66	Putative	KEGG	K00999	Putative	Pfam	PF14681	Putative
+Enzyme Commission	2.7.1.67	Putative	KEGG	K04958	Putative	Pfam	PF14682	Putative
+Enzyme Commission	2.7.1.68	Putative	KEGG	K04959	Putative	Pfam	PF14703	Putative
+Enzyme Commission	2.7.1.71	Putative	KEGG	K04960	Putative	Pfam	PF14719	Putative
+Enzyme Commission	2.7.1.72	Putative	KEGG	K02677	Putative	Pfam	PF14724	Putative
+Enzyme Commission	2.7.1.73	Putative	KEGG	K19662	Putative	Pfam	PF14793	Putative
+Enzyme Commission	2.7.1.74	Putative	KEGG	K19663	Putative	Pfam	PF14829	Putative
+Enzyme Commission	2.7.1.76	Putative	KEGG	K02183	Putative	Pfam	PF14860	Putative
+Enzyme Commission	2.7.1.77	Putative				Pfam	PF14895	Putative
+Enzyme Commission	2.7.1.78	Putative				Pfam	PF15099	Putative
+Enzyme Commission	2.7.1.79	Putative				Pfam	PF15159	Putative
+Enzyme Commission	2.7.1.80	Putative				Pfam	PF15276	Putative
+Enzyme Commission	2.7.1.81	Putative				Pfam	PF15347	Putative
+Enzyme Commission	2.7.1.82	Putative				Pfam	PF15439	Putative
+Enzyme Commission	2.7.1.83	Putative				Pfam	PF15452	Putative
+Enzyme Commission	2.7.1.84	Putative				Pfam	PF15503	Putative
+Enzyme Commission	2.7.1.85	Putative				Pfam	PF15609	Putative
+Enzyme Commission	2.7.1.86	Putative				Pfam	PF15691	Putative
+Enzyme Commission	2.7.1.87	Putative				Pfam	PF15698	Putative
+Enzyme Commission	2.7.1.88	Putative				Pfam	PF15713	Putative
+Enzyme Commission	2.7.1.89	Putative				Pfam	PF15740	Putative
+Enzyme Commission	2.7.1.90	Putative				Pfam	PF15848	Putative
+Enzyme Commission	2.7.1.91	Putative				Pfam	PF16209	Putative
+Enzyme Commission	2.7.1.92	Putative				Pfam	PF16212	Putative
+Enzyme Commission	2.7.1.93	Putative				Pfam	PF16242	Putative
+Enzyme Commission	2.7.1.94	Putative				Pfam	PF16276	Putative
+Enzyme Commission	2.7.1.95	Putative				Pfam	PF16370	Putative
+Enzyme Commission	2.7.1.100	Putative				Pfam	PF16371	Putative
+Enzyme Commission	2.7.1.101	Putative				Pfam	PF16454	Putative
+Enzyme Commission	2.7.1.102	Putative				Pfam	PF16565	Putative
+Enzyme Commission	2.7.1.103	Putative				Pfam	PF16582	Putative
+Enzyme Commission	2.7.1.105	Putative				Pfam	PF16607	Putative
+Enzyme Commission	2.7.1.106	Putative				Pfam	PF16655	Putative
+Enzyme Commission	2.7.1.107	Putative				Pfam	PF16656	Putative
+Enzyme Commission	2.7.1.108	Putative				Pfam	PF16670	Putative
+Enzyme Commission	2.7.1.113	Putative				Pfam	PF16726	Putative
+Enzyme Commission	2.7.1.114	Putative				Pfam	PF16776	Putative
+Enzyme Commission	2.7.1.118	Putative				Pfam	PF16891	Putative
+Enzyme Commission	2.7.1.119	Putative				Pfam	PF16896	Putative
+Enzyme Commission	2.7.1.121	Putative				Pfam	PF16901	Putative
+Enzyme Commission	2.7.1.122	Putative				Pfam	PF16904	Putative
+Enzyme Commission	2.7.1.127	Putative				Pfam	PF17297	Putative
+Enzyme Commission	2.7.1.130	Putative				Pfam	PF17385	Putative
+Enzyme Commission	2.7.1.134	Putative				Pfam	PF17386	Putative
+Enzyme Commission	2.7.1.136	Putative				Pfam	PF17767	Putative
+Enzyme Commission	2.7.1.137	Putative				Pfam	PF17769	Putative
+Enzyme Commission	2.7.1.138	Putative				Pfam	PF17773	Putative
+Enzyme Commission	2.7.1.140	Putative				Pfam	PF17808	Putative
+Enzyme Commission	2.7.1.142	Putative				Pfam	PF17837	Putative
+Enzyme Commission	2.7.1.143	Putative				Pfam	PF17839	Putative
+Enzyme Commission	2.7.1.144	Putative				Pfam	PF17927	Putative
+Enzyme Commission	2.7.1.145	Putative				Pfam	PF17941	Putative
+Enzyme Commission	2.7.1.146	Putative				Pfam	PF17956	Putative
+Enzyme Commission	2.7.1.147	Putative				Pfam	PF17987	Putative
+Enzyme Commission	2.7.1.148	Putative				Pfam	PF18006	Putative
+Enzyme Commission	2.7.1.149	Putative				Pfam	PF18086	Putative
+Enzyme Commission	2.7.1.150	Putative				Pfam	PF18100	Putative
+Enzyme Commission	2.7.1.151	Putative				Pfam	PF18127	Putative
+Enzyme Commission	2.7.1.153	Putative				Pfam	PF18353	Putative
+Enzyme Commission	2.7.1.154	Putative				Pfam	PF18363	Putative
+Enzyme Commission	2.7.1.156	Putative				Pfam	PF18365	Putative
+Enzyme Commission	2.7.1.157	Putative				Pfam	PF18376	Putative
+Enzyme Commission	2.7.1.158	Putative				Pfam	PF18440	Putative
+Enzyme Commission	2.7.1.159	Putative				Pfam	PF18468	Putative
+Enzyme Commission	2.7.1.160	Putative				Pfam	PF18572	Putative
+Enzyme Commission	2.7.1.161	Putative				Pfam	PF18695	Putative
+Enzyme Commission	2.7.1.162	Putative				Pfam	PF18706	Putative
+Enzyme Commission	2.7.1.163	Putative				Pfam	PF18723	Putative
+Enzyme Commission	2.7.1.165	Putative				Pfam	PF18724	Putative
+Enzyme Commission	2.7.1.166	Putative				Pfam	PF18746	Putative
+Enzyme Commission	2.7.1.167	Putative				Pfam	PF18801	Putative
+Enzyme Commission	2.7.1.168	Putative				Pfam	PF18823	Putative
+Enzyme Commission	2.7.1.169	Putative				Pfam	PF18861	Putative
+Enzyme Commission	2.7.1.170	Putative				Pfam	PF18909	Putative
+Enzyme Commission	2.7.1.171	Putative				Pfam	PF18913	Putative
+Enzyme Commission	2.7.1.172	Putative				Pfam	PF19050	Putative
+Enzyme Commission	2.7.1.173	Putative				Pfam	PF19200	Putative
+Enzyme Commission	2.7.1.174	Putative				Pfam	PF19272	Putative
+Enzyme Commission	2.7.1.175	Putative				Pfam	PF19277	Putative
+Enzyme Commission	2.7.1.176	Putative				Pfam	PF19292	Putative
+Enzyme Commission	2.7.1.177	Putative				Pfam	PF19304	Putative
+Enzyme Commission	2.7.1.178	Putative				Pfam	PF19316	Putative
+Enzyme Commission	2.7.1.179	Putative				Pfam	PF19327	Putative
+Enzyme Commission	2.7.1.180	Putative				Pfam	PF19580	Putative
+Enzyme Commission	2.7.1.181	Putative				Pfam	PF20171	Putative
+Enzyme Commission	2.7.1.182	Putative				Pfam	PF20274	Putative
+Enzyme Commission	2.7.1.183	Putative				Pfam	PF20423	Putative
+Enzyme Commission	2.7.1.184	Putative				Pfam	PF20511	Putative
+Enzyme Commission	2.7.1.185	Putative				Pfam	PF20512	Putative
+Enzyme Commission	2.7.1.186	Putative						
+Enzyme Commission	2.7.1.187	Putative						
+Enzyme Commission	2.7.1.188	Putative						
+Enzyme Commission	2.7.1.189	Putative						
+Enzyme Commission	2.7.1.190	Putative						
+Enzyme Commission	2.7.1.191	Putative						
+Enzyme Commission	2.7.1.192	Putative						
+Enzyme Commission	2.7.1.193	Putative						
+Enzyme Commission	2.7.1.194	Putative						
+Enzyme Commission	2.7.1.195	Putative						
+Enzyme Commission	2.7.1.196	Putative						
+Enzyme Commission	2.7.1.197	Putative						
+Enzyme Commission	2.7.1.198	Putative						
+Enzyme Commission	2.7.1.199	Putative						
+Enzyme Commission	2.7.1.200	Putative						
+Enzyme Commission	2.7.1.201	Putative						
+Enzyme Commission	2.7.1.202	Putative						
+Enzyme Commission	2.7.1.203	Putative						
+Enzyme Commission	2.7.1.204	Putative						
+Enzyme Commission	2.7.1.205	Putative						
+Enzyme Commission	2.7.1.206	Putative						
+Enzyme Commission	2.7.1.207	Putative						
+Enzyme Commission	2.7.1.208	Putative						
+Enzyme Commission	2.7.1.209	Putative						
+Enzyme Commission	2.7.1.210	Putative						
+Enzyme Commission	2.7.1.211	Putative						
+Enzyme Commission	2.7.1.212	Putative						
+Enzyme Commission	2.7.1.213	Putative						
+Enzyme Commission	2.7.1.214	Putative						
+Enzyme Commission	2.7.1.215	Putative						
+Enzyme Commission	2.7.1.216	Putative						
+Enzyme Commission	2.7.1.217	Putative						
+Enzyme Commission	2.7.1.218	Putative						
+Enzyme Commission	2.7.1.219	Putative						
+Enzyme Commission	2.7.1.220	Putative						
+Enzyme Commission	2.7.1.221	Putative						
+Enzyme Commission	2.7.1.222	Putative						
+Enzyme Commission	2.7.1.223	Putative						
+Enzyme Commission	2.7.1.224	Putative						
+Enzyme Commission	2.7.1.225	Putative						
+Enzyme Commission	2.7.1.226	Putative						
+Enzyme Commission	2.7.1.227	Putative						
+Enzyme Commission	2.7.1.228	Putative						
+Enzyme Commission	2.7.1.229	Putative						
+Enzyme Commission	2.7.1.230	Putative						
+Enzyme Commission	2.7.1.231	Putative						
+Enzyme Commission	2.7.1.232	Putative						
+Enzyme Commission	2.7.1.233	Putative						
+Enzyme Commission	2.7.1.234	Putative						
+Enzyme Commission	2.7.1.235	Putative						
+Enzyme Commission	2.7.1.236	Putative						
+Enzyme Commission	2.7.1.-	Putative						
+Enzyme Commission	2.7.2.1	Putative						
+Enzyme Commission	2.7.2.2	Putative						
+Enzyme Commission	2.7.2.3	Putative						
+Enzyme Commission	2.7.2.4	Putative						
+Enzyme Commission	2.7.2.6	Putative						
+Enzyme Commission	2.7.2.7	Putative						
+Enzyme Commission	2.7.2.8	Putative						
+Enzyme Commission	2.7.2.10	Putative						
+Enzyme Commission	2.7.2.11	Putative						
+Enzyme Commission	2.7.2.12	Putative						
+Enzyme Commission	2.7.2.14	Putative						
+Enzyme Commission	2.7.2.15	Putative						
+Enzyme Commission	2.7.2.16	Putative						
+Enzyme Commission	2.7.2.17	Putative						
+Enzyme Commission	2.7.2.18	Putative						
+Enzyme Commission	2.7.2.-	Putative						
+Enzyme Commission	2.7.3.1	Putative						
+Enzyme Commission	2.7.3.2	Putative						
+Enzyme Commission	2.7.3.3	Putative						
+Enzyme Commission	2.7.3.4	Putative						
+Enzyme Commission	2.7.3.5	Putative						
+Enzyme Commission	2.7.3.6	Putative						
+Enzyme Commission	2.7.3.7	Putative						
+Enzyme Commission	2.7.3.8	Putative						
+Enzyme Commission	2.7.3.9	Putative						
+Enzyme Commission	2.7.3.10	Putative						
+Enzyme Commission	2.7.3.13	Putative						
+Enzyme Commission	2.7.4.1	Putative						
+Enzyme Commission	2.7.4.2	Putative						
+Enzyme Commission	2.7.4.3	Putative						
+Enzyme Commission	2.7.4.4	Putative						
+Enzyme Commission	2.7.4.6	Putative						
+Enzyme Commission	2.7.4.7	Putative						
+Enzyme Commission	2.7.4.8	Putative						
+Enzyme Commission	2.7.4.9	Putative						
+Enzyme Commission	2.7.4.10	Putative						
+Enzyme Commission	2.7.4.11	Putative						
+Enzyme Commission	2.7.4.12	Putative						
+Enzyme Commission	2.7.4.13	Putative						
+Enzyme Commission	2.7.4.14	Putative						
+Enzyme Commission	2.7.4.15	Putative						
+Enzyme Commission	2.7.4.16	Putative						
+Enzyme Commission	2.7.4.17	Putative						
+Enzyme Commission	2.7.4.18	Putative						
+Enzyme Commission	2.7.4.19	Putative						
+Enzyme Commission	2.7.4.20	Putative						
+Enzyme Commission	2.7.4.21	Putative						
+Enzyme Commission	2.7.4.22	Putative						
+Enzyme Commission	2.7.4.23	Putative						
+Enzyme Commission	2.7.4.24	Putative						
+Enzyme Commission	2.7.4.25	Putative						
+Enzyme Commission	2.7.4.26	Putative						
+Enzyme Commission	2.7.4.27	Putative						
+Enzyme Commission	2.7.4.28	Putative						
+Enzyme Commission	2.7.4.29	Putative						
+Enzyme Commission	2.7.4.31	Putative						
+Enzyme Commission	2.7.4.32	Putative						
+Enzyme Commission	2.7.4.33	Putative						
+Enzyme Commission	2.7.4.34	Putative						
+Enzyme Commission	2.7.4.-	Putative						
+Enzyme Commission	2.7.6.1	Putative						
+Enzyme Commission	2.7.6.2	Putative						
+Enzyme Commission	2.7.6.3	Putative						
+Enzyme Commission	2.7.6.4	Putative						
+Enzyme Commission	2.7.6.5	Putative						
+Enzyme Commission	2.7.7.1	Putative						
+Enzyme Commission	2.7.7.2	Putative						
+Enzyme Commission	2.7.7.3	Putative						
+Enzyme Commission	2.7.7.4	Putative						
+Enzyme Commission	2.7.7.5	Putative						
+Enzyme Commission	2.7.7.8	Putative						
+Enzyme Commission	2.7.7.9	Putative						
+Enzyme Commission	2.7.7.10	Putative						
+Enzyme Commission	2.7.7.11	Putative						
+Enzyme Commission	2.7.7.12	Putative						
+Enzyme Commission	2.7.7.13	Putative						
+Enzyme Commission	2.7.7.14	Putative						
+Enzyme Commission	2.7.7.15	Putative						
+Enzyme Commission	2.7.7.18	Putative						
+Enzyme Commission	2.7.7.19	Putative						
+Enzyme Commission	2.7.7.22	Putative						
+Enzyme Commission	2.7.7.23	Putative						
+Enzyme Commission	2.7.7.24	Putative						
+Enzyme Commission	2.7.7.27	Putative						
+Enzyme Commission	2.7.7.28	Putative						
+Enzyme Commission	2.7.7.30	Putative						
+Enzyme Commission	2.7.7.32	Putative						
+Enzyme Commission	2.7.7.33	Putative						
+Enzyme Commission	2.7.7.34	Putative						
+Enzyme Commission	2.7.7.35	Putative						
+Enzyme Commission	2.7.7.36	Putative						
+Enzyme Commission	2.7.7.37	Putative						
+Enzyme Commission	2.7.7.38	Putative						
+Enzyme Commission	2.7.7.39	Putative						
+Enzyme Commission	2.7.7.40	Putative						
+Enzyme Commission	2.7.7.41	Putative						
+Enzyme Commission	2.7.7.42	Putative						
+Enzyme Commission	2.7.7.43	Putative						
+Enzyme Commission	2.7.7.44	Putative						
+Enzyme Commission	2.7.7.45	Putative						
+Enzyme Commission	2.7.7.46	Putative						
+Enzyme Commission	2.7.7.47	Putative						
+Enzyme Commission	2.7.7.51	Putative						
+Enzyme Commission	2.7.7.53	Putative						
+Enzyme Commission	2.7.7.57	Putative						
+Enzyme Commission	2.7.7.59	Putative						
+Enzyme Commission	2.7.7.60	Putative						
+Enzyme Commission	2.7.7.61	Putative						
+Enzyme Commission	2.7.7.62	Putative						
+Enzyme Commission	2.7.7.64	Putative						
+Enzyme Commission	2.7.7.65	Putative						
+Enzyme Commission	2.7.7.66	Putative						
+Enzyme Commission	2.7.7.67	Putative						
+Enzyme Commission	2.7.7.68	Putative						
+Enzyme Commission	2.7.7.69	Putative						
+Enzyme Commission	2.7.7.70	Putative						
+Enzyme Commission	2.7.7.71	Putative						
+Enzyme Commission	2.7.7.73	Putative						
+Enzyme Commission	2.7.7.74	Putative						
+Enzyme Commission	2.7.7.75	Putative						
+Enzyme Commission	2.7.7.76	Putative						
+Enzyme Commission	2.7.7.77	Putative						
+Enzyme Commission	2.7.7.78	Putative						
+Enzyme Commission	2.7.7.80	Putative						
+Enzyme Commission	2.7.7.81	Putative						
+Enzyme Commission	2.7.7.82	Putative						
+Enzyme Commission	2.7.7.83	Putative						
+Enzyme Commission	2.7.7.84	Putative						
+Enzyme Commission	2.7.7.85	Putative						
+Enzyme Commission	2.7.7.86	Putative						
+Enzyme Commission	2.7.7.87	Putative						
+Enzyme Commission	2.7.7.88	Putative						
+Enzyme Commission	2.7.7.89	Putative						
+Enzyme Commission	2.7.7.90	Putative						
+Enzyme Commission	2.7.7.91	Putative						
+Enzyme Commission	2.7.7.92	Putative						
+Enzyme Commission	2.7.7.93	Putative						
+Enzyme Commission	2.7.7.96	Putative						
+Enzyme Commission	2.7.7.97	Putative						
+Enzyme Commission	2.7.7.99	Putative						
+Enzyme Commission	2.7.7.100	Putative						
+Enzyme Commission	2.7.7.103	Putative						
+Enzyme Commission	2.7.7.104	Putative						
+Enzyme Commission	2.7.7.105	Putative						
+Enzyme Commission	2.7.7.106	Putative						
+Enzyme Commission	2.7.7.107	Putative						
+Enzyme Commission	2.7.7.-	Putative						
+Enzyme Commission	2.7.8.1	Putative						
+Enzyme Commission	2.7.8.2	Putative						
+Enzyme Commission	2.7.8.3	Putative						
+Enzyme Commission	2.7.8.4	Putative						
+Enzyme Commission	2.7.8.5	Putative						
+Enzyme Commission	2.7.8.6	Putative						
+Enzyme Commission	2.7.8.7	Putative						
+Enzyme Commission	2.7.8.8	Putative						
+Enzyme Commission	2.7.8.9	Putative						
+Enzyme Commission	2.7.8.10	Putative						
+Enzyme Commission	2.7.8.11	Putative						
+Enzyme Commission	2.7.8.12	Putative						
+Enzyme Commission	2.7.8.13	Putative						
+Enzyme Commission	2.7.8.14	Putative						
+Enzyme Commission	2.7.8.15	Putative						
+Enzyme Commission	2.7.8.17	Putative						
+Enzyme Commission	2.7.8.18	Putative						
+Enzyme Commission	2.7.8.19	Putative						
+Enzyme Commission	2.7.8.20	Putative						
+Enzyme Commission	2.7.8.21	Putative						
+Enzyme Commission	2.7.8.22	Putative						
+Enzyme Commission	2.7.8.23	Putative						
+Enzyme Commission	2.7.8.24	Putative						
+Enzyme Commission	2.7.8.26	Putative						
+Enzyme Commission	2.7.8.27	Putative						
+Enzyme Commission	2.7.8.28	Putative						
+Enzyme Commission	2.7.8.29	Putative						
+Enzyme Commission	2.7.8.31	Putative						
+Enzyme Commission	2.7.8.32	Putative						
+Enzyme Commission	2.7.8.33	Putative						
+Enzyme Commission	2.7.8.34	Putative						
+Enzyme Commission	2.7.8.35	Putative						
+Enzyme Commission	2.7.8.36	Putative						
+Enzyme Commission	2.7.8.37	Putative						
+Enzyme Commission	2.7.8.38	Putative						
+Enzyme Commission	2.7.8.39	Putative						
+Enzyme Commission	2.7.8.40	Putative						
+Enzyme Commission	2.7.8.41	Putative						
+Enzyme Commission	2.7.8.42	Putative						
+Enzyme Commission	2.7.8.43	Putative						
+Enzyme Commission	2.7.8.44	Putative						
+Enzyme Commission	2.7.8.45	Putative						
+Enzyme Commission	2.7.8.46	Putative						
+Enzyme Commission	2.7.8.47	Putative						
+Enzyme Commission	2.7.8.-	Putative						
+Enzyme Commission	2.7.9.1	Putative						
+Enzyme Commission	2.7.9.2	Putative						
+Enzyme Commission	2.7.9.3	Putative						
+Enzyme Commission	2.7.9.4	Putative						
+Enzyme Commission	2.7.9.5	Putative						
+Enzyme Commission	2.7.9.6	Putative						
+Enzyme Commission	2.7.9.-	Putative						
+Enzyme Commission	2.7.10.1	Putative						
+Enzyme Commission	2.7.10.2	Putative						
+Enzyme Commission	2.7.10.3	Putative						
+Enzyme Commission	2.7.11.1	Putative						
+Enzyme Commission	2.7.11.2	Putative						
+Enzyme Commission	2.7.11.3	Putative						
+Enzyme Commission	2.7.11.4	Putative						
+Enzyme Commission	2.7.11.5	Putative						
+Enzyme Commission	2.7.11.6	Putative						
+Enzyme Commission	2.7.11.7	Putative						
+Enzyme Commission	2.7.11.8	Putative						
+Enzyme Commission	2.7.11.9	Putative						
+Enzyme Commission	2.7.11.10	Putative						
+Enzyme Commission	2.7.11.11	Putative						
+Enzyme Commission	2.7.11.12	Putative						
+Enzyme Commission	2.7.11.13	Putative						
+Enzyme Commission	2.7.11.14	Putative						
+Enzyme Commission	2.7.11.15	Putative						
+Enzyme Commission	2.7.11.16	Putative						
+Enzyme Commission	2.7.11.17	Putative						
+Enzyme Commission	2.7.11.18	Putative						
+Enzyme Commission	2.7.11.19	Putative						
+Enzyme Commission	2.7.11.20	Putative						
+Enzyme Commission	2.7.11.21	Putative						
+Enzyme Commission	2.7.11.22	Putative						
+Enzyme Commission	2.7.11.24	Putative						
+Enzyme Commission	2.7.11.25	Putative						
+Enzyme Commission	2.7.11.26	Putative						
+Enzyme Commission	2.7.11.27	Putative						
+Enzyme Commission	2.7.11.28	Putative						
+Enzyme Commission	2.7.11.29	Putative						
+Enzyme Commission	2.7.11.30	Putative						
+Enzyme Commission	2.7.11.31	Putative						
+Enzyme Commission	2.7.11.32	Putative						
+Enzyme Commission	2.7.11.33	Putative						
+Enzyme Commission	2.7.11.-	Putative						
+Enzyme Commission	2.7.12.1	Putative						
+Enzyme Commission	2.7.12.2	Putative						
+Enzyme Commission	2.7.13.1	Putative						
+Enzyme Commission	2.7.13.2	Putative						
+Enzyme Commission	2.7.13.3	Putative						
+Enzyme Commission	2.7.13.-	Putative						
+Enzyme Commission	2.7.14.1	Putative						
+Enzyme Commission	2.7.99.1	Putative						
+Enzyme Commission	2.7.-.-	Putative						
+Enzyme Commission	2.8.4.6	Putative						
+Enzyme Commission	2.8.5.1	Putative						
+Enzyme Commission	3.1.1.4	Putative						
+Enzyme Commission	3.1.1.5	Putative						
+Enzyme Commission	3.1.1.31	Putative						
+Enzyme Commission	3.1.1.32	Putative						
+Enzyme Commission	3.1.1.47	Putative						
+Enzyme Commission	3.1.1.52	Putative						
+Enzyme Commission	3.1.1.89	Putative						
+Enzyme Commission	3.1.1.104	Putative						
+Enzyme Commission	3.1.1.111	Putative						
+Enzyme Commission	3.1.1.118	Putative						
+Enzyme Commission	3.1.3.1	Putative						
+Enzyme Commission	3.1.3.2	Putative						
+Enzyme Commission	3.1.3.3	Putative						
+Enzyme Commission	3.1.3.4	Putative						
+Enzyme Commission	3.1.3.7	Putative						
+Enzyme Commission	3.1.3.9	Putative						
+Enzyme Commission	3.1.3.10	Putative						
+Enzyme Commission	3.1.3.11	Putative						
+Enzyme Commission	3.1.3.12	Putative						
+Enzyme Commission	3.1.3.14	Putative						
+Enzyme Commission	3.1.3.15	Putative						
+Enzyme Commission	3.1.3.16	Putative						
+Enzyme Commission	3.1.3.17	Putative						
+Enzyme Commission	3.1.3.18	Putative						
+Enzyme Commission	3.1.3.19	Putative						
+Enzyme Commission	3.1.3.20	Putative						
+Enzyme Commission	3.1.3.21	Putative						
+Enzyme Commission	3.1.3.22	Putative						
+Enzyme Commission	3.1.3.23	Putative						
+Enzyme Commission	3.1.3.24	Putative						
+Enzyme Commission	3.1.3.25	Putative						
+Enzyme Commission	3.1.3.27	Putative						
+Enzyme Commission	3.1.3.28	Putative						
+Enzyme Commission	3.1.3.29	Putative						
+Enzyme Commission	3.1.3.32	Putative						
+Enzyme Commission	3.1.3.33	Putative						
+Enzyme Commission	3.1.3.34	Putative						
+Enzyme Commission	3.1.3.35	Putative						
+Enzyme Commission	3.1.3.36	Putative						
+Enzyme Commission	3.1.3.37	Putative						
+Enzyme Commission	3.1.3.38	Putative						
+Enzyme Commission	3.1.3.39	Putative						
+Enzyme Commission	3.1.3.40	Putative						
+Enzyme Commission	3.1.3.41	Putative						
+Enzyme Commission	3.1.3.42	Putative						
+Enzyme Commission	3.1.3.43	Putative						
+Enzyme Commission	3.1.3.44	Putative						
+Enzyme Commission	3.1.3.45	Putative						
+Enzyme Commission	3.1.3.46	Putative						
+Enzyme Commission	3.1.3.47	Putative						
+Enzyme Commission	3.1.3.48	Putative						
+Enzyme Commission	3.1.3.49	Putative						
+Enzyme Commission	3.1.3.50	Putative						
+Enzyme Commission	3.1.3.51	Putative						
+Enzyme Commission	3.1.3.52	Putative						
+Enzyme Commission	3.1.3.53	Putative						
+Enzyme Commission	3.1.3.54	Putative						
+Enzyme Commission	3.1.3.55	Putative						
+Enzyme Commission	3.1.3.56	Putative						
+Enzyme Commission	3.1.3.57	Putative						
+Enzyme Commission	3.1.3.58	Putative						
+Enzyme Commission	3.1.3.59	Putative						
+Enzyme Commission	3.1.3.60	Putative						
+Enzyme Commission	3.1.3.62	Putative						
+Enzyme Commission	3.1.3.63	Putative						
+Enzyme Commission	3.1.3.64	Putative						
+Enzyme Commission	3.1.3.66	Putative						
+Enzyme Commission	3.1.3.67	Putative						
+Enzyme Commission	3.1.3.68	Putative						
+Enzyme Commission	3.1.3.69	Putative						
+Enzyme Commission	3.1.3.70	Putative						
+Enzyme Commission	3.1.3.71	Putative						
+Enzyme Commission	3.1.3.73	Putative						
+Enzyme Commission	3.1.3.74	Putative						
+Enzyme Commission	3.1.3.75	Putative						
+Enzyme Commission	3.1.3.76	Putative						
+Enzyme Commission	3.1.3.78	Putative						
+Enzyme Commission	3.1.3.79	Putative						
+Enzyme Commission	3.1.3.80	Putative						
+Enzyme Commission	3.1.3.81	Putative						
+Enzyme Commission	3.1.3.82	Putative						
+Enzyme Commission	3.1.3.83	Putative						
+Enzyme Commission	3.1.3.84	Putative						
+Enzyme Commission	3.1.3.85	Putative						
+Enzyme Commission	3.1.3.86	Putative						
+Enzyme Commission	3.1.3.87	Putative						
+Enzyme Commission	3.1.3.88	Putative						
+Enzyme Commission	3.1.3.90	Putative						
+Enzyme Commission	3.1.3.92	Putative						
+Enzyme Commission	3.1.3.93	Putative						
+Enzyme Commission	3.1.3.94	Putative						
+Enzyme Commission	3.1.3.95	Putative						
+Enzyme Commission	3.1.3.96	Putative						
+Enzyme Commission	3.1.3.97	Putative						
+Enzyme Commission	3.1.3.100	Putative						
+Enzyme Commission	3.1.3.101	Putative						
+Enzyme Commission	3.1.3.103	Putative						
+Enzyme Commission	3.1.3.104	Putative						
+Enzyme Commission	3.1.3.105	Putative						
+Enzyme Commission	3.1.3.106	Putative						
+Enzyme Commission	3.1.3.107	Putative						
+Enzyme Commission	3.1.4.1	Putative						
+Enzyme Commission	3.1.4.2	Putative						
+Enzyme Commission	3.1.4.3	Putative						
+Enzyme Commission	3.1.4.4	Putative						
+Enzyme Commission	3.1.4.11	Putative						
+Enzyme Commission	3.1.4.12	Putative						
+Enzyme Commission	3.1.4.13	Putative						
+Enzyme Commission	3.1.4.14	Putative						
+Enzyme Commission	3.1.4.16	Putative						
+Enzyme Commission	3.1.4.17	Putative						
+Enzyme Commission	3.1.4.35	Putative						
+Enzyme Commission	3.1.4.37	Putative						
+Enzyme Commission	3.1.4.38	Putative						
+Enzyme Commission	3.1.4.39	Putative						
+Enzyme Commission	3.1.4.40	Putative						
+Enzyme Commission	3.1.4.41	Putative						
+Enzyme Commission	3.1.4.42	Putative						
+Enzyme Commission	3.1.4.43	Putative						
+Enzyme Commission	3.1.4.44	Putative						
+Enzyme Commission	3.1.4.45	Putative						
+Enzyme Commission	3.1.4.46	Putative						
+Enzyme Commission	3.1.4.48	Putative						
+Enzyme Commission	3.1.4.49	Putative						
+Enzyme Commission	3.1.4.50	Putative						
+Enzyme Commission	3.1.4.51	Putative						
+Enzyme Commission	3.1.4.52	Putative						
+Enzyme Commission	3.1.4.53	Putative						
+Enzyme Commission	3.1.4.54	Putative						
+Enzyme Commission	3.1.4.55	Putative						
+Enzyme Commission	3.1.4.56	Putative						
+Enzyme Commission	3.1.4.57	Putative						
+Enzyme Commission	3.1.4.59	Putative						
+Enzyme Commission	3.1.4.60	Putative						
+Enzyme Commission	3.1.4.61	Putative						
+Enzyme Commission	3.1.5.1	Putative						
+Enzyme Commission	3.1.5.-	Putative						
+Enzyme Commission	3.1.7.1	Putative						
+Enzyme Commission	3.1.7.2	Putative						
+Enzyme Commission	3.1.7.3	Putative						
+Enzyme Commission	3.1.7.5	Putative						
+Enzyme Commission	3.1.7.6	Putative						
+Enzyme Commission	3.1.7.10	Putative						
+Enzyme Commission	3.1.7.11	Putative						
+Enzyme Commission	3.1.7.12	Putative						
+Enzyme Commission	3.1.7.13	Putative						
+Enzyme Commission	3.1.8.1	Putative						
+Enzyme Commission	3.1.8.2	Putative						
+Enzyme Commission	3.2.1.85	Putative						
+Enzyme Commission	3.2.1.86	Putative						
+Enzyme Commission	3.2.1.93	Putative						
+Enzyme Commission	3.2.1.122	Putative						
+Enzyme Commission	3.5.1.25	Putative						
+Enzyme Commission	3.5.1.89	Putative						
+Enzyme Commission	3.5.1.102	Putative						
+Enzyme Commission	3.5.1.129	Putative						
+Enzyme Commission	3.5.4.17	Putative						
+Enzyme Commission	3.5.4.19	Putative						
+Enzyme Commission	3.5.4.26	Putative						
+Enzyme Commission	3.5.99.6	Putative						
+Enzyme Commission	3.6.1.1	Putative						
+Enzyme Commission	3.6.1.2	Putative						
+Enzyme Commission	3.6.1.5	Putative						
+Enzyme Commission	3.6.1.6	Putative						
+Enzyme Commission	3.6.1.7	Putative						
+Enzyme Commission	3.6.1.8	Putative						
+Enzyme Commission	3.6.1.9	Putative						
+Enzyme Commission	3.6.1.10	Putative						
+Enzyme Commission	3.6.1.11	Putative						
+Enzyme Commission	3.6.1.12	Putative						
+Enzyme Commission	3.6.1.13	Putative						
+Enzyme Commission	3.6.1.14	Putative						
+Enzyme Commission	3.6.1.15	Putative						
+Enzyme Commission	3.6.1.16	Putative						
+Enzyme Commission	3.6.1.17	Putative						
+Enzyme Commission	3.6.1.18	Putative						
+Enzyme Commission	3.6.1.20	Putative						
+Enzyme Commission	3.6.1.21	Putative						
+Enzyme Commission	3.6.1.22	Putative						
+Enzyme Commission	3.6.1.23	Putative						
+Enzyme Commission	3.6.1.24	Putative						
+Enzyme Commission	3.6.1.25	Putative						
+Enzyme Commission	3.6.1.26	Putative						
+Enzyme Commission	3.6.1.27	Putative						
+Enzyme Commission	3.6.1.28	Putative						
+Enzyme Commission	3.6.1.29	Putative						
+Enzyme Commission	3.6.1.31	Putative						
+Enzyme Commission	3.6.1.39	Putative						
+Enzyme Commission	3.6.1.40	Putative						
+Enzyme Commission	3.6.1.41	Putative						
+Enzyme Commission	3.6.1.42	Putative						
+Enzyme Commission	3.6.1.43	Putative						
+Enzyme Commission	3.6.1.44	Putative						
+Enzyme Commission	3.6.1.45	Putative						
+Enzyme Commission	3.6.1.52	Putative						
+Enzyme Commission	3.6.1.53	Putative						
+Enzyme Commission	3.6.1.54	Putative						
+Enzyme Commission	3.6.1.55	Putative						
+Enzyme Commission	3.6.1.56	Putative						
+Enzyme Commission	3.6.1.57	Putative						
+Enzyme Commission	3.6.1.58	Putative						
+Enzyme Commission	3.6.1.60	Putative						
+Enzyme Commission	3.6.1.61	Putative						
+Enzyme Commission	3.6.1.63	Putative						
+Enzyme Commission	3.6.1.64	Putative						
+Enzyme Commission	3.6.1.65	Putative						
+Enzyme Commission	3.6.1.66	Putative						
+Enzyme Commission	3.6.1.67	Putative						
+Enzyme Commission	3.6.1.68	Putative						
+Enzyme Commission	3.6.1.69	Putative						
+Enzyme Commission	3.6.1.73	Putative						
+Enzyme Commission	3.6.1.-	Putative						
+Enzyme Commission	3.6.2.2	Putative						
+Enzyme Commission	3.7.1.28	Putative						
+Enzyme Commission	3.9.1.1	Putative						
+Enzyme Commission	3.9.1.2	Putative						
+Enzyme Commission	3.9.1.3	Putative						
+Enzyme Commission	3.11.1.1	Putative						
+Enzyme Commission	3.11.1.2	Putative						
+Enzyme Commission	3.11.1.3	Putative						
+Enzyme Commission	4.1.1.21	Putative						
+Enzyme Commission	4.1.1.23	Putative						
+Enzyme Commission	4.1.1.31	Putative						
+Enzyme Commission	4.1.1.32	Putative						
+Enzyme Commission	4.1.1.33	Putative						
+Enzyme Commission	4.1.1.36	Putative						
+Enzyme Commission	4.1.1.38	Putative						
+Enzyme Commission	4.1.1.39	Putative						
+Enzyme Commission	4.1.1.48	Putative						
+Enzyme Commission	4.1.1.49	Putative						
+Enzyme Commission	4.1.1.65	Putative						
+Enzyme Commission	4.1.1.81	Putative						
+Enzyme Commission	4.1.1.82	Putative						
+Enzyme Commission	4.1.1.85	Putative						
+Enzyme Commission	4.1.1.99	Putative						
+Enzyme Commission	4.1.1.104	Putative						
+Enzyme Commission	4.1.1.110	Putative						
+Enzyme Commission	4.1.1.121	Putative						
+Enzyme Commission	4.1.2.2	Putative						
+Enzyme Commission	4.1.2.4	Putative						
+Enzyme Commission	4.1.2.8	Putative						
+Enzyme Commission	4.1.2.9	Putative						
+Enzyme Commission	4.1.2.13	Putative						
+Enzyme Commission	4.1.2.14	Putative						
+Enzyme Commission	4.1.2.17	Putative						
+Enzyme Commission	4.1.2.19	Putative						
+Enzyme Commission	4.1.2.21	Putative						
+Enzyme Commission	4.1.2.22	Putative						
+Enzyme Commission	4.1.2.27	Putative						
+Enzyme Commission	4.1.2.29	Putative						
+Enzyme Commission	4.1.2.40	Putative						
+Enzyme Commission	4.1.2.43	Putative						
+Enzyme Commission	4.1.2.55	Putative						
+Enzyme Commission	4.1.2.56	Putative						
+Enzyme Commission	4.1.2.57	Putative						
+Enzyme Commission	4.1.2.59	Putative						
+Enzyme Commission	4.1.2.60	Putative						
+Enzyme Commission	4.1.2.62	Putative						
+Enzyme Commission	4.1.99.12	Putative						
+Enzyme Commission	4.1.99.17	Putative						
+Enzyme Commission	4.2.1.11	Putative						
+Enzyme Commission	4.2.1.12	Putative						
+Enzyme Commission	4.2.1.19	Putative						
+Enzyme Commission	4.2.1.109	Putative						
+Enzyme Commission	4.2.1.126	Putative						
+Enzyme Commission	4.2.1.133	Putative						
+Enzyme Commission	4.2.1.160	Putative						
+Enzyme Commission	4.2.1.166	Putative						
+Enzyme Commission	4.2.1.173	Putative						
+Enzyme Commission	4.2.1.174	Putative						
+Enzyme Commission	4.2.3.1	Putative						
+Enzyme Commission	4.2.3.2	Putative						
+Enzyme Commission	4.2.3.3	Putative						
+Enzyme Commission	4.2.3.4	Putative						
+Enzyme Commission	4.2.3.5	Putative						
+Enzyme Commission	4.2.3.6	Putative						
+Enzyme Commission	4.2.3.7	Putative						
+Enzyme Commission	4.2.3.8	Putative						
+Enzyme Commission	4.2.3.9	Putative						
+Enzyme Commission	4.2.3.10	Putative						
+Enzyme Commission	4.2.3.11	Putative						
+Enzyme Commission	4.2.3.12	Putative						
+Enzyme Commission	4.2.3.13	Putative						
+Enzyme Commission	4.2.3.15	Putative						
+Enzyme Commission	4.2.3.16	Putative						
+Enzyme Commission	4.2.3.17	Putative						
+Enzyme Commission	4.2.3.18	Putative						
+Enzyme Commission	4.2.3.19	Putative						
+Enzyme Commission	4.2.3.20	Putative						
+Enzyme Commission	4.2.3.21	Putative						
+Enzyme Commission	4.2.3.22	Putative						
+Enzyme Commission	4.2.3.23	Putative						
+Enzyme Commission	4.2.3.24	Putative						
+Enzyme Commission	4.2.3.25	Putative						
+Enzyme Commission	4.2.3.26	Putative						
+Enzyme Commission	4.2.3.27	Putative						
+Enzyme Commission	4.2.3.28	Putative						
+Enzyme Commission	4.2.3.29	Putative						
+Enzyme Commission	4.2.3.30	Putative						
+Enzyme Commission	4.2.3.31	Putative						
+Enzyme Commission	4.2.3.32	Putative						
+Enzyme Commission	4.2.3.33	Putative						
+Enzyme Commission	4.2.3.34	Putative						
+Enzyme Commission	4.2.3.35	Putative						
+Enzyme Commission	4.2.3.36	Putative						
+Enzyme Commission	4.2.3.37	Putative						
+Enzyme Commission	4.2.3.38	Putative						
+Enzyme Commission	4.2.3.39	Putative						
+Enzyme Commission	4.2.3.40	Putative						
+Enzyme Commission	4.2.3.41	Putative						
+Enzyme Commission	4.2.3.42	Putative						
+Enzyme Commission	4.2.3.43	Putative						
+Enzyme Commission	4.2.3.44	Putative						
+Enzyme Commission	4.2.3.45	Putative						
+Enzyme Commission	4.2.3.46	Putative						
+Enzyme Commission	4.2.3.47	Putative						
+Enzyme Commission	4.2.3.48	Putative						
+Enzyme Commission	4.2.3.49	Putative						
+Enzyme Commission	4.2.3.50	Putative						
+Enzyme Commission	4.2.3.51	Putative						
+Enzyme Commission	4.2.3.52	Putative						
+Enzyme Commission	4.2.3.53	Putative						
+Enzyme Commission	4.2.3.54	Putative						
+Enzyme Commission	4.2.3.55	Putative						
+Enzyme Commission	4.2.3.56	Putative						
+Enzyme Commission	4.2.3.57	Putative						
+Enzyme Commission	4.2.3.58	Putative						
+Enzyme Commission	4.2.3.59	Putative						
+Enzyme Commission	4.2.3.60	Putative						
+Enzyme Commission	4.2.3.61	Putative						
+Enzyme Commission	4.2.3.62	Putative						
+Enzyme Commission	4.2.3.63	Putative						
+Enzyme Commission	4.2.3.64	Putative						
+Enzyme Commission	4.2.3.65	Putative						
+Enzyme Commission	4.2.3.66	Putative						
+Enzyme Commission	4.2.3.67	Putative						
+Enzyme Commission	4.2.3.68	Putative						
+Enzyme Commission	4.2.3.69	Putative						
+Enzyme Commission	4.2.3.70	Putative						
+Enzyme Commission	4.2.3.71	Putative						
+Enzyme Commission	4.2.3.72	Putative						
+Enzyme Commission	4.2.3.73	Putative						
+Enzyme Commission	4.2.3.74	Putative						
+Enzyme Commission	4.2.3.75	Putative						
+Enzyme Commission	4.2.3.76	Putative						
+Enzyme Commission	4.2.3.77	Putative						
+Enzyme Commission	4.2.3.78	Putative						
+Enzyme Commission	4.2.3.79	Putative						
+Enzyme Commission	4.2.3.80	Putative						
+Enzyme Commission	4.2.3.81	Putative						
+Enzyme Commission	4.2.3.82	Putative						
+Enzyme Commission	4.2.3.83	Putative						
+Enzyme Commission	4.2.3.84	Putative						
+Enzyme Commission	4.2.3.85	Putative						
+Enzyme Commission	4.2.3.86	Putative						
+Enzyme Commission	4.2.3.87	Putative						
+Enzyme Commission	4.2.3.88	Putative						
+Enzyme Commission	4.2.3.89	Putative						
+Enzyme Commission	4.2.3.90	Putative						
+Enzyme Commission	4.2.3.91	Putative						
+Enzyme Commission	4.2.3.92	Putative						
+Enzyme Commission	4.2.3.93	Putative						
+Enzyme Commission	4.2.3.94	Putative						
+Enzyme Commission	4.2.3.95	Putative						
+Enzyme Commission	4.2.3.96	Putative						
+Enzyme Commission	4.2.3.97	Putative						
+Enzyme Commission	4.2.3.98	Putative						
+Enzyme Commission	4.2.3.99	Putative						
+Enzyme Commission	4.2.3.100	Putative						
+Enzyme Commission	4.2.3.101	Putative						
+Enzyme Commission	4.2.3.102	Putative						
+Enzyme Commission	4.2.3.103	Putative						
+Enzyme Commission	4.2.3.104	Putative						
+Enzyme Commission	4.2.3.105	Putative						
+Enzyme Commission	4.2.3.106	Putative						
+Enzyme Commission	4.2.3.107	Putative						
+Enzyme Commission	4.2.3.108	Putative						
+Enzyme Commission	4.2.3.109	Putative						
+Enzyme Commission	4.2.3.110	Putative						
+Enzyme Commission	4.2.3.111	Putative						
+Enzyme Commission	4.2.3.112	Putative						
+Enzyme Commission	4.2.3.113	Putative						
+Enzyme Commission	4.2.3.114	Putative						
+Enzyme Commission	4.2.3.115	Putative						
+Enzyme Commission	4.2.3.116	Putative						
+Enzyme Commission	4.2.3.117	Putative						
+Enzyme Commission	4.2.3.118	Putative						
+Enzyme Commission	4.2.3.119	Putative						
+Enzyme Commission	4.2.3.120	Putative						
+Enzyme Commission	4.2.3.121	Putative						
+Enzyme Commission	4.2.3.122	Putative						
+Enzyme Commission	4.2.3.123	Putative						
+Enzyme Commission	4.2.3.124	Putative						
+Enzyme Commission	4.2.3.125	Putative						
+Enzyme Commission	4.2.3.126	Putative						
+Enzyme Commission	4.2.3.127	Putative						
+Enzyme Commission	4.2.3.128	Putative						
+Enzyme Commission	4.2.3.129	Putative						
+Enzyme Commission	4.2.3.130	Putative						
+Enzyme Commission	4.2.3.131	Putative						
+Enzyme Commission	4.2.3.132	Putative						
+Enzyme Commission	4.2.3.133	Putative						
+Enzyme Commission	4.2.3.134	Putative						
+Enzyme Commission	4.2.3.135	Putative						
+Enzyme Commission	4.2.3.136	Putative						
+Enzyme Commission	4.2.3.137	Putative						
+Enzyme Commission	4.2.3.138	Putative						
+Enzyme Commission	4.2.3.139	Putative						
+Enzyme Commission	4.2.3.140	Putative						
+Enzyme Commission	4.2.3.141	Putative						
+Enzyme Commission	4.2.3.142	Putative						
+Enzyme Commission	4.2.3.143	Putative						
+Enzyme Commission	4.2.3.144	Putative						
+Enzyme Commission	4.2.3.145	Putative						
+Enzyme Commission	4.2.3.146	Putative						
+Enzyme Commission	4.2.3.147	Putative						
+Enzyme Commission	4.2.3.148	Putative						
+Enzyme Commission	4.2.3.149	Putative						
+Enzyme Commission	4.2.3.150	Putative						
+Enzyme Commission	4.2.3.151	Putative						
+Enzyme Commission	4.2.3.152	Putative						
+Enzyme Commission	4.2.3.153	Putative						
+Enzyme Commission	4.2.3.154	Putative						
+Enzyme Commission	4.2.3.155	Putative						
+Enzyme Commission	4.2.3.156	Putative						
+Enzyme Commission	4.2.3.157	Putative						
+Enzyme Commission	4.2.3.158	Putative						
+Enzyme Commission	4.2.3.159	Putative						
+Enzyme Commission	4.2.3.160	Putative						
+Enzyme Commission	4.2.3.161	Putative						
+Enzyme Commission	4.2.3.162	Putative						
+Enzyme Commission	4.2.3.163	Putative						
+Enzyme Commission	4.2.3.164	Putative						
+Enzyme Commission	4.2.3.165	Putative						
+Enzyme Commission	4.2.3.166	Putative						
+Enzyme Commission	4.2.3.167	Putative						
+Enzyme Commission	4.2.3.168	Putative						
+Enzyme Commission	4.2.3.169	Putative						
+Enzyme Commission	4.2.3.170	Putative						
+Enzyme Commission	4.2.3.171	Putative						
+Enzyme Commission	4.2.3.172	Putative						
+Enzyme Commission	4.2.3.173	Putative						
+Enzyme Commission	4.2.3.174	Putative						
+Enzyme Commission	4.2.3.175	Putative						
+Enzyme Commission	4.2.3.176	Putative						
+Enzyme Commission	4.2.3.177	Putative						
+Enzyme Commission	4.2.3.178	Putative						
+Enzyme Commission	4.2.3.179	Putative						
+Enzyme Commission	4.2.3.180	Putative						
+Enzyme Commission	4.2.3.181	Putative						
+Enzyme Commission	4.2.3.182	Putative						
+Enzyme Commission	4.2.3.183	Putative						
+Enzyme Commission	4.2.3.184	Putative						
+Enzyme Commission	4.2.3.185	Putative						
+Enzyme Commission	4.2.3.186	Putative						
+Enzyme Commission	4.2.3.187	Putative						
+Enzyme Commission	4.2.3.188	Putative						
+Enzyme Commission	4.2.3.189	Putative						
+Enzyme Commission	4.2.3.190	Putative						
+Enzyme Commission	4.2.3.191	Putative						
+Enzyme Commission	4.2.3.192	Putative						
+Enzyme Commission	4.2.3.193	Putative						
+Enzyme Commission	4.2.3.194	Putative						
+Enzyme Commission	4.2.3.195	Putative						
+Enzyme Commission	4.2.3.196	Putative						
+Enzyme Commission	4.2.3.197	Putative						
+Enzyme Commission	4.2.3.198	Putative						
+Enzyme Commission	4.2.3.199	Putative						
+Enzyme Commission	4.2.3.200	Putative						
+Enzyme Commission	4.2.3.201	Putative						
+Enzyme Commission	4.2.3.202	Putative						
+Enzyme Commission	4.2.3.203	Putative						
+Enzyme Commission	4.2.3.204	Putative						
+Enzyme Commission	4.2.3.205	Putative						
+Enzyme Commission	4.2.3.-	Putative						
+Enzyme Commission	4.3.1.29	Putative						
+Enzyme Commission	4.3.2.10	Putative						
+Enzyme Commission	4.3.3.6	Putative						
+Enzyme Commission	4.4.1.19	Putative						
+Enzyme Commission	4.6.1.12	Putative						
+Enzyme Commission	4.6.1.13	Putative						
+Enzyme Commission	4.6.1.14	Putative						
+Enzyme Commission	4.6.1.17	Putative						
+Enzyme Commission	4.7.1.1	Putative						
+Enzyme Commission	5.1.3.1	Putative						
+Enzyme Commission	5.1.3.4	Putative						
+Enzyme Commission	5.1.3.9	Putative						
+Enzyme Commission	5.1.3.15	Putative						
+Enzyme Commission	5.1.3.22	Putative						
+Enzyme Commission	5.1.3.26	Putative						
+Enzyme Commission	5.1.3.35	Putative						
+Enzyme Commission	5.1.3.38	Putative						
+Enzyme Commission	5.1.3.40	Putative						
+Enzyme Commission	5.1.3.42	Putative						
+Enzyme Commission	5.1.99.7	Putative						
+Enzyme Commission	5.3.1.1	Putative						
+Enzyme Commission	5.3.1.6	Putative						
+Enzyme Commission	5.3.1.8	Putative						
+Enzyme Commission	5.3.1.9	Putative						
+Enzyme Commission	5.3.1.13	Putative						
+Enzyme Commission	5.3.1.16	Putative						
+Enzyme Commission	5.3.1.23	Putative						
+Enzyme Commission	5.3.1.24	Putative						
+Enzyme Commission	5.3.1.26	Putative						
+Enzyme Commission	5.3.1.27	Putative						
+Enzyme Commission	5.3.1.28	Putative						
+Enzyme Commission	5.3.1.29	Putative						
+Enzyme Commission	5.3.1.32	Putative						
+Enzyme Commission	5.3.1.33	Putative						
+Enzyme Commission	5.3.1.34	Putative						
+Enzyme Commission	5.3.2.5	Putative						
+Enzyme Commission	5.3.3.2	Putative						
+Enzyme Commission	5.3.3.23	Putative						
+Enzyme Commission	5.4.2.2	Putative						
+Enzyme Commission	5.4.2.3	Putative						
+Enzyme Commission	5.4.2.4	Putative						
+Enzyme Commission	5.4.2.5	Putative						
+Enzyme Commission	5.4.2.6	Putative						
+Enzyme Commission	5.4.2.7	Putative						
+Enzyme Commission	5.4.2.8	Putative						
+Enzyme Commission	5.4.2.9	Putative						
+Enzyme Commission	5.4.2.10	Putative						
+Enzyme Commission	5.4.2.11	Putative						
+Enzyme Commission	5.4.2.12	Putative						
+Enzyme Commission	5.4.2.13	Putative						
+Enzyme Commission	5.5.1.4	Putative						
+Enzyme Commission	5.5.1.8	Putative						
+Enzyme Commission	5.5.1.12	Putative						
+Enzyme Commission	5.5.1.13	Putative						
+Enzyme Commission	5.5.1.14	Putative						
+Enzyme Commission	5.5.1.15	Putative						
+Enzyme Commission	5.5.1.16	Putative						
+Enzyme Commission	5.5.1.22	Putative						
+Enzyme Commission	5.5.1.28	Putative						
+Enzyme Commission	5.5.1.29	Putative						
+Enzyme Commission	5.5.1.30	Putative						
+Enzyme Commission	6.3.1.10	Putative						
+Enzyme Commission	6.3.1.21	Putative						
+Enzyme Commission	6.3.2.5	Putative						
+Enzyme Commission	6.3.2.6	Putative						
+Enzyme Commission	6.3.2.16	Putative						
+Enzyme Commission	6.3.2.36	Putative						
+Enzyme Commission	6.3.2.51	Putative						
+Enzyme Commission	6.3.3.1	Putative						
+Enzyme Commission	6.3.4.7	Putative						
+Enzyme Commission	6.3.4.8	Putative						
+Enzyme Commission	6.3.4.13	Putative						
+Enzyme Commission	6.3.4.16	Putative						
+Enzyme Commission	6.3.4.21	Putative						
+Enzyme Commission	6.3.4.23	Putative						
+Enzyme Commission	6.3.5.3	Putative						
+Enzyme Commission	6.3.5.5	Putative						
+Enzyme Commission	6.5.1.8	Putative						
+Enzyme Commission	6.5.1.9	Putative						
+Enzyme Commission	6.5.1.-	Putative						
+Enzyme Commission	7.1.2.1	Putative						
+Enzyme Commission	7.1.2.2	Putative						
+Enzyme Commission	7.1.3.1	Putative						
+Enzyme Commission	7.1.3.2	Putative						
+Enzyme Commission	7.2.2.1	Putative						
+Enzyme Commission	7.2.2.2	Putative						
+Enzyme Commission	7.2.2.3	Putative						
+Enzyme Commission	7.2.2.4	Putative						
+Enzyme Commission	7.2.2.5	Putative						
+Enzyme Commission	7.2.2.6	Putative						
+Enzyme Commission	7.2.2.7	Putative						
+Enzyme Commission	7.2.2.8	Putative						
+Enzyme Commission	7.2.2.9	Putative						
+Enzyme Commission	7.2.2.10	Putative						
+Enzyme Commission	7.2.2.11	Putative						
+Enzyme Commission	7.2.2.12	Putative						
+Enzyme Commission	7.2.2.13	Putative						
+Enzyme Commission	7.2.2.14	Putative						
+Enzyme Commission	7.2.2.15	Putative						
+Enzyme Commission	7.2.2.16	Putative						
+Enzyme Commission	7.2.2.17	Putative						
+Enzyme Commission	7.2.2.18	Putative						
+Enzyme Commission	7.2.2.19	Putative						
+Enzyme Commission	7.2.2.20	Putative						
+Enzyme Commission	7.2.2.21	Putative						
+Enzyme Commission	7.2.2.22	Putative						
+Enzyme Commission	7.3.2.1	Putative						
+Enzyme Commission	7.3.2.2	Putative						
+Enzyme Commission	7.3.2.3	Putative						
+Enzyme Commission	7.3.2.4	Putative						
+Enzyme Commission	7.3.2.5	Putative						
+Enzyme Commission	7.3.2.6	Putative						
+Enzyme Commission	7.3.2.7	Putative						
+Enzyme Commission	7.4.2.1	Putative						
+Enzyme Commission	7.4.2.2	Putative						
+Enzyme Commission	7.4.2.3	Putative						
+Enzyme Commission	7.4.2.4	Putative						
+Enzyme Commission	7.4.2.5	Putative						
+Enzyme Commission	7.4.2.6	Putative						
+Enzyme Commission	7.4.2.7	Putative						
+Enzyme Commission	7.4.2.8	Putative						
+Enzyme Commission	7.4.2.9	Putative						
+Enzyme Commission	7.4.2.10	Putative						
+Enzyme Commission	7.4.2.11	Putative						
+Enzyme Commission	7.4.2.12	Putative						
+Enzyme Commission	7.4.2.13	Putative						
+Enzyme Commission	7.4.2.14	Putative						
+Enzyme Commission	7.5.2.1	Putative						
+Enzyme Commission	7.5.2.2	Putative						
+Enzyme Commission	7.5.2.3	Putative						
+Enzyme Commission	7.5.2.4	Putative						
+Enzyme Commission	7.5.2.5	Putative						
+Enzyme Commission	7.5.2.6	Putative						
+Enzyme Commission	7.5.2.7	Putative						
+Enzyme Commission	7.5.2.8	Putative						
+Enzyme Commission	7.5.2.9	Putative						
+Enzyme Commission	7.5.2.10	Putative						
+Enzyme Commission	7.5.2.11	Putative						
+Enzyme Commission	7.5.2.12	Putative						
+Enzyme Commission	7.5.2.13	Putative						
+Enzyme Commission	7.6.2.1	Putative						
+Enzyme Commission	7.6.2.2	Putative						
+Enzyme Commission	7.6.2.3	Putative						
+Enzyme Commission	7.6.2.4	Putative						
+Enzyme Commission	7.6.2.5	Putative						
+Enzyme Commission	7.6.2.6	Putative						
+Enzyme Commission	7.6.2.7	Putative						
+Enzyme Commission	7.6.2.8	Putative						
+Enzyme Commission	7.6.2.9	Putative						
+Enzyme Commission	7.6.2.10	Putative						
+Enzyme Commission	7.6.2.11	Putative						
+Enzyme Commission	7.6.2.12	Putative						
+Enzyme Commission	7.6.2.13	Putative						
+Enzyme Commission	7.6.2.14	Putative						
+Enzyme Commission	7.6.2.15	Putative						
+Enzyme Commission	7.6.2.16	Putative						
